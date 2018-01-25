@@ -1,0 +1,5 @@
+# Налаштування Apache
+Options Indexes FollowSymLinks
+DirectoryIndex if.php
+# Настройки PHP
+php_flag short_open_tag on
