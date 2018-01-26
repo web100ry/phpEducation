@@ -23,10 +23,16 @@ else {
     $name = strip_tags($_COOKIE["userName"]);
     $age = $_COOKIE["userAge"] * 1;
 
-}
 
+}
+// вказання типу повернення даних
+function qw(): bool {
+    return 222;
+}
+echo qw();
 
 ?>
+
 <form action="<?=$_SERVER["PHP_SELF"]?>"
       method="post">
     Ваше имя:
