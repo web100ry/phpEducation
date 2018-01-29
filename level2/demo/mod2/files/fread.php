@@ -4,7 +4,7 @@
 </HEAD>
 <BODY>
 <?
-	$fp = fopen("data.txt", "r") or die("Îøèáêà!");
+	$fp = fopen("data.txt", "r") or die("ÐžÑˆÐ¸Ð±ÐºÐ°!");
 	
 	$data = fread($fp, 5);
 	

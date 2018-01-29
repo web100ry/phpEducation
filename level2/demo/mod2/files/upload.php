@@ -10,13 +10,13 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-	<title>Загрузка файлов на сервер</title>
+	<title>Р—Р°РіСЂСѓР·РєР° С„Р°Р№Р»РѕРІ РЅР° СЃРµСЂРІРµСЂ</title>
 </head>
 <body>
-<h1>Загрузка файлов на сервер</h1>
+<h1>Р—Р°РіСЂСѓР·РєР° С„Р°Р№Р»РѕРІ РЅР° СЃРµСЂРІРµСЂ</h1>
 <form action="<?=$_SERVER["PHP_SELF"]?>">
 	<input type="file" name="userfile"><br>
-	<input type="submit" value="Загрузить">
+	<input type="submit" value="Р—Р°РіСЂСѓР·РёС‚СЊ">
 </form>
 
 

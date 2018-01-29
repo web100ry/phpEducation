@@ -4,7 +4,7 @@
 </HEAD>
 <BODY>
 <?
-	file_put_contents("newdata.txt","\r\nÍîâàÿ ñòðîêà",FILE_APPEND);
+	file_put_contents("newdata.txt","\r\nÐÐ¾Ð²Ð°Ñ ÑÑ‚Ñ€Ð¾ÐºÐ°",FILE_APPEND);
 ?>
 </BODY>
 </HTML>

@@ -2,16 +2,16 @@
 
 <html>
 <head>
-	<title>Информация с другого сервера</title>
+	<title>РРЅС„РѕСЂРјР°С†РёСЏ СЃ РґСЂСѓРіРѕРіРѕ СЃРµСЂРІРµСЂР°</title>
 </head>
 
 <body>
-<h1>Информация с другого сервера</h1>
+<h1>РРЅС„РѕСЂРјР°С†РёСЏ СЃ РґСЂСѓРіРѕРіРѕ СЃРµСЂРІРµСЂР°</h1>
 <?
 define("url", "http://localhost/files/time-server.php");
 $lines = @file(url);
 if ($lines) {
-	echo "Время машины " . url . ": " . $lines[0];
+	echo "Р’СЂРµРјСЏ РјР°С€РёРЅС‹ " . url . ": " . $lines[0];
 }
 ?>
 </body>

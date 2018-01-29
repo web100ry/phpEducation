@@ -1,6 +1,6 @@
-<h2>Меню</h2>
+<h2>РњРµРЅСЋ</h2>
 <ul>
-	<li><a href="page1.php">Страница 1</a></li>
-	<li><a href="page2.php">Страница 2</a></li>
-	<li><a href="page3.php">Страница 3</a></li>
+	<li><a href="page1.php">РЎС‚СЂР°РЅРёС†Р° 1</a></li>
+	<li><a href="page2.php">РЎС‚СЂР°РЅРёС†Р° 2</a></li>
+	<li><a href="page3.php">РЎС‚СЂР°РЅРёС†Р° 3</a></li>
 </ul>

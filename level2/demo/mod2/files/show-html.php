@@ -1,14 +1,14 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-	<title>Показать исходный код</title>
+	<title>РџРѕРєР°Р·Р°С‚СЊ РёСЃС…РѕРґРЅС‹Р№ РєРѕРґ</title>
 </head>
 <body>
-<h1>Показать исходный код</h1>
+<h1>РџРѕРєР°Р·Р°С‚СЊ РёСЃС…РѕРґРЅС‹Р№ РєРѕРґ</h1>
 <form action="<?=$_SERVER["PHP_SELF"]?>">
-	Введите URL: <em>http://</em>
+	Р’РІРµРґРёС‚Рµ URL: <em>http://</em>
 	<input type="text" name="url" value="localhost/primer/mod2/files/yandex">
-	<input type="submit" value="Показать">
+	<input type="submit" value="РџРѕРєР°Р·Р°С‚СЊ">
 </form>
 <?
 $url = strtolower($_GET["url"]);
