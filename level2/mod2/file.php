@@ -1,6 +1,19 @@
 <?php
+//define("MYFILE","file.txt");
 
+$fileName="file.txt";
+$fname=strip_tags($_POST["fname"]);
+$lname=strip_tags($_POST["lname"]);
 
+if ($fname and $lname){
+
+$stroka= "$fname $lname\n";
+
+    $fp = fopen($fileName, 'a');
+    fwrite($fp, $stroka);
+    fclose($fp);
+header("Location: " . $_SERVER["PHP_SELF"]);
+}
 
 /*
 ЗАДАНИЕ 1
