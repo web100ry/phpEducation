@@ -1,20 +1,20 @@
 <?php
-//define("MYFILE","file.txt");
-define("MYFILE","data.html");
+define("MYFILE","file.txt");
+//define("MYFILE","data.html");
 
 //$fileName="file.txt";
-$fname=strip_tags($_POST["fname"]);
-$lname=strip_tags($_POST["lname"]);
+$fname=trim(strip_tags($_POST["fname"]));
+$lname=trim(strip_tags($_POST["lname"]));
 
 if ($fname and $lname){
 
 $stroka= "$fname $lname\n";
-
+// file_put_contents(MYFILE,$stroka, FILE_APPEND); //простий спосіб запису файлів
     $fp = fopen(MYFILE, 'a') or die("Error");
     fwrite($fp, $stroka);
     fclose($fp);
  // echo  var_dump($fp);
-header("Location: " . $_SERVER["PHP_SELF"]);
+header("Location: " . $_SERVER["PHP_SELF"]); exit;
 }
 
 
@@ -54,33 +54,46 @@ header("Location: " . $_SERVER["PHP_SELF"]);
     <p>Тест Gita2</p>
 
 <?php
+if (file_exists(MYFILE)) {
 
-$fp = fopen(MYFILE, 'r') or die("Error");
+
+    $fp = fopen(MYFILE, 'r') or die("Error");
+
+
 //echo fread($fp,filesize(MYFILE));//вивід змісту всього файлу
-echo fgets($fp)."<br>"; // виводить строку
-echo fgets($fp)."<br>";
-echo fgetss($fp,255)."<br>";// прибирає теги із строки, яка має довжину 255 знаків
-echo fgetss($fp, 255, "<br>")."<br>";// і залишає тег <br>
-echo fgetss($fp)."<br>";
-echo "-------------------------------------------------<br>";
 
-fclose($fp);
 
-$arrayLine=file(MYFILE);
-$countLine=0;
-foreach ($arrayLine as $line){
-    $countLine++;
-    echo $countLine." ".$line;
+    echo fgets($fp) . "<br>"; // виводить строку
+    echo fgets($fp) . "<br>";
+    echo fgetss($fp, 255) . "<br>";// прибирає теги із строки, яка має довжину 255 знаків
+    echo fgetss($fp, 255, "<br>") . "<br>";// і залишає тег <br>
+    echo fgetss($fp) . "<br>";
+    echo "-------------------------------------------------<br>";
+
+    fclose($fp);
+
+    $arrayLine = file(MYFILE);
+    if (is_array($arrayLine)){
+        $arrayLine = array_reverse($arrayLine);
+    }
+    $countLine = 0;
+    foreach ($arrayLine as $line) {
+        $countLine++;
+        echo $countLine . " " . $line."</br>";
+    }
+
+    file_put_contents("file.txt", "\nLine from file_put_contents", FILE_APPEND);
+
+
+    /*
+     *
+    ЗАДАНИЕ 2
+    - Проверьте, существует ли файл с информацией о пользователях
+    - Если файл существует, получите все содержимое файла в виде массива строк
+    - В цикле выведите все строки данного файла с порядковым номером строки
+    - После этого выведите размер файла в байтах.
+    */
 }
-
-/*
- *
-ЗАДАНИЕ 2
-- Проверьте, существует ли файл с информацией о пользователях
-- Если файл существует, получите все содержимое файла в виде массива строк
-- В цикле выведите все строки данного файла с порядковым номером строки
-- После этого выведите размер файла в байтах.
-*/
 ?>
 
 </body>
