@@ -56,15 +56,23 @@ header("Location: " . $_SERVER["PHP_SELF"]);
 <?php
 
 $fp = fopen(MYFILE, 'r') or die("Error");
-//echo fread($fp,filesize(MYFILE));
+//echo fread($fp,filesize(MYFILE));//вивід змісту всього файлу
 echo fgets($fp)."<br>"; // виводить строку
 echo fgets($fp)."<br>";
-echo fgetss($fp)."<br>";// прибирає теги із строки
+echo fgetss($fp,255)."<br>";// прибирає теги із строки, яка має довжину 255 знаків
+echo fgetss($fp, 255, "<br>")."<br>";// і залишає тег <br>
 echo fgetss($fp)."<br>";
-echo fgetss($fp)."<br>";
+echo "-------------------------------------------------<br>";
 
+fclose($fp);
 
-fclose($fp);1
+$arrayLine=file(MYFILE);
+$countLine=0;
+foreach ($arrayLine as $line){
+    $countLine++;
+    echo $countLine." ".$line;
+}
+
 /*
  *
 ЗАДАНИЕ 2
