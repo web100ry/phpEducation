@@ -1,7 +1,8 @@
 <?php
 //define("MYFILE","file.txt");
+define("MYFILE","data.html");
 
-$fileName="file.txt";
+//$fileName="file.txt";
 $fname=strip_tags($_POST["fname"]);
 $lname=strip_tags($_POST["lname"]);
 
@@ -9,11 +10,13 @@ if ($fname and $lname){
 
 $stroka= "$fname $lname\n";
 
-    $fp = fopen($fileName, 'a');
+    $fp = fopen(MYFILE, 'a') or die("Error");
     fwrite($fp, $stroka);
     fclose($fp);
+ // echo  var_dump($fp);
 header("Location: " . $_SERVER["PHP_SELF"]);
 }
+
 
 /*
 ЗАДАНИЕ 1
@@ -51,6 +54,17 @@ header("Location: " . $_SERVER["PHP_SELF"]);
     <p>Тест Gita2</p>
 
 <?php
+
+$fp = fopen(MYFILE, 'r') or die("Error");
+//echo fread($fp,filesize(MYFILE));
+echo fgets($fp)."<br>"; // виводить строку
+echo fgets($fp)."<br>";
+echo fgetss($fp)."<br>";// прибирає теги із строки
+echo fgetss($fp)."<br>";
+echo fgetss($fp)."<br>";
+
+
+fclose($fp);1
 /*
  *
 ЗАДАНИЕ 2
