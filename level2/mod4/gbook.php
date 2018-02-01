@@ -1,4 +1,14 @@
 <?php
+
+define("DB_HOST", "localhost");
+define("DB_LOGIN", "root");
+define("DB_PASSWORD", "qwerty");
+
+$connection = mysqli_connect(DB_HOST, DB_LOGIN, DB_PASSWORD) or die(mysqli_error($connection));
+mysqli_select_db($connection,'gbook') or die(mysqli_error($connection));
+$sql = "SELECT * FROM msgs ";
+$result=mysqli_query ($connection, $sql) or die(mysqli_error($connection));
+
 /* ЗАДАНИЕ 1
 - Подключитесь к серверу mySQL
 - Выберите активную Базу Данных 'gbook'
@@ -43,6 +53,13 @@
 </form>
 
 <?php
+echo "Всього записів в книзі: ".mysqli_num_rows($result)."<br>";
+while ($row=mysqli_fetch_assoc($result)){
+    echo "<a href=\"mailto:".$row['email']."\">".$row['name']."</a><br>";
+    echo "<br>".$row['msg']."</br>";
+    echo "<br> <a href=\"".$_SERVER['PHP_SELF']."?d=".$row['id']."\">DELETE</a>";
+    echo "<br>------------------------------------------------<br>";
+}
 /*
 ЗАДАНИЕ 2
 - Сформируйте SQL-оператор на выборку всех данных из таблицы
@@ -55,6 +72,8 @@
   об авторе каждого сообщения. После каджого сообщения сформируйте ссылку для удаления этой
   записи. Информацию об идентификаторе удаляемого сообщения передавайте методом GET.
 */
+
+mysqli_close($connection);
 ?>
 
 </body>

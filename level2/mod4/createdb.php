@@ -20,7 +20,7 @@ CREATE TABLE msgs (
 )";
 mysqli_query($connection, $sql) or die(mysqli_error());
 
-mysqli_close();
+mysqli_close($connection);
 
 print '<p>Структура базы данных успешно создана!</p>';
 ?>
