@@ -1,16 +1,14 @@
 <?php
-// Создание структуры Базы Данных гостевой книги
+// РЎРѕР·РґР°РЅРёРµ СЃС‚СЂСѓРєС‚СѓСЂС‹ Р‘Р°Р·С‹ Р”Р°РЅРЅС‹С… РіРѕСЃС‚РµРІРѕР№ РєРЅРёРіРё
 
 define("DB_HOST", "localhost");
 define("DB_LOGIN", "root");
-define("DB_PASSWORD", "password");
+define("DB_PASSWORD", "qwerty");
+$connection = mysqli_connect(DB_HOST, DB_LOGIN, DB_PASSWORD) or die(mysqli_error());
+//$sql = 'CREATE DATABASE gbook';
+//mysqli_query($connection, $sql) or die(mysqli_error());
 
-mysql_connect(DB_HOST, DB_LOGIN, DB_PASSWORD) or die(mysql_error());
-
-$sql = 'CREATE DATABASE gbook';
-mysql_query($sql) or die(mysql_error());
-
-mysql_select_db('gbook') or die(mysql_error());
+mysqli_select_db($connection,'gbook') or die(mysqli_error());
 
 $sql = "
 CREATE TABLE msgs (
@@ -20,9 +18,9 @@ CREATE TABLE msgs (
 	msg TEXT,
 	PRIMARY KEY (id)
 )";
-mysql_query($sql) or die(mysql_error());
+mysqli_query($connection, $sql) or die(mysqli_error());
 
-mysql_close();
+mysqli_close();
 
-print '<p>Структура базы данных успешно создана!</p>';
+print '<p>РЎС‚СЂСѓРєС‚СѓСЂР° Р±Р°Р·С‹ РґР°РЅРЅС‹С… СѓСЃРїРµС€РЅРѕ СЃРѕР·РґР°РЅР°!</p>';
 ?>
