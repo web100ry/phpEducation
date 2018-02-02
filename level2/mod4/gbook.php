@@ -6,26 +6,38 @@ define("DB_PASSWORD", "qwerty");
 
 $connection = mysqli_connect(DB_HOST, DB_LOGIN, DB_PASSWORD) or die(mysqli_error($connection));
 mysqli_select_db($connection,'gbook') or die(mysqli_error($connection));
-$sql = "SELECT * FROM msgs ";
+$sql = "SELECT * FROM msgs ORDER BY id DESC ";
 $result=mysqli_query ($connection, $sql) or die(mysqli_error($connection));
 
-/* ЗАДАНИЕ 1
-- Подключитесь к серверу mySQL
-- Выберите активную Базу Данных 'gbook'
-- Проверьте, была ли корректным образом отправлена форма
-- Если она была отправлена: отфильтруйте полученные данные,
-  сформируйте SQL-оператор на вставку данных в таблицу msgs
-  и выполните его. После этого выполните перезапрос страницы, чтобы избавиться от информации, переданной через форму
-*/
 
-/*
-ЗАДАНИЕ 3
-- Проверьте, был ли запрос методом GET на удаление записи
-- Если он был: отфильтруйте полученные данные,
-  сформируйте SQL-оператор на удаление записи и выполните его.
-  После этого выполните перезапрос страницы, чтобы избавиться от информации, переданной методом GET
-*/
+function clearData($data,$type="s"){
+    switch ($type){
+        case "s": $data=trim(strip_tags($data));break;
+        case "i": $data=abs((int)$data);break;
+    }
+return $data;
+}
 
+if (isset($_GET["d"])){
+$id=clearData($_GET["d"],"i");
+    if($id>0){
+        $sql = "DELETE FROM msgs WHERE id = $id";
+        $result=mysqli_query ($connection, $sql) or die(mysqli_error($connection));
+        header("Location: gbook.php");
+    }
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    $n=clearData($_POST['name']);
+    $e=clearData($_POST['email']);
+    $t=clearData($_POST['msg']);
+    if ($n and $e){
+        $sql = "INSERT INTO msgs(name, email, msg) VALUES ('$n','$e','$t')";
+        $result=mysqli_query ($connection, $sql) or die(mysqli_error($connection));
+    header("Location: gbook.php");
+exit;
+    }
+}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -55,25 +67,15 @@ $result=mysqli_query ($connection, $sql) or die(mysqli_error($connection));
 <?php
 echo "Всього записів в книзі: ".mysqli_num_rows($result)."<br>";
 while ($row=mysqli_fetch_assoc($result)){
+    $msg=nl2br($row['msg']);
     echo "<a href=\"mailto:".$row['email']."\">".$row['name']."</a><br>";
-    echo "<br>".$row['msg']."</br>";
+    echo "<br>".$msg."</br>";
     echo "<br> <a href=\"".$_SERVER['PHP_SELF']."?d=".$row['id']."\">DELETE</a>";
     echo "<br>------------------------------------------------<br>";
 }
-/*
-ЗАДАНИЕ 2
-- Сформируйте SQL-оператор на выборку всех данных из таблицы
-  msgs в обратном порядке и выполните его. Результат выборки
-  сохраните в переменной.
-- Закройте соединение с БД
-- Получите количество рядов результата выборки и выведите его на экран
-- В цикле получите очередной ряд результата выборки в виде ассоциативного массива.
-  Таким образом, используя этот цикл, выведите на экран все сообщения, а также информацию
-  об авторе каждого сообщения. После каджого сообщения сформируйте ссылку для удаления этой
-  записи. Информацию об идентификаторе удаляемого сообщения передавайте методом GET.
-*/
 
 mysqli_close($connection);
+
 ?>
 
 </body>

@@ -5,20 +5,20 @@ $age = $_SESSION["age"];
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-	<title>Демо сессии</title>
+	<title>Р”РµРјРѕ СЃРµСЃСЃРёРё</title>
 </head>
 <body>
-<h1>Демо сессии</h1>
-<a href="session-1.php">Демонстрация сессии</a><br>
-<a href="session_destroy.php">Закрыть сессию</a><br><br>
+<h1>Р”РµРјРѕ СЃРµСЃСЃРёРё</h1>
+<a href="session-1.php">Р”РµРјРѕРЅСЃС‚СЂР°С†РёСЏ СЃРµСЃСЃРёРё</a><br>
+<a href="session_destroy.php">Р—Р°РєСЂС‹С‚СЊ СЃРµСЃСЃРёСЋ</a><br><br>
 <?
 if ($name and $age) {	
 	if ($name and $age) {
-		echo "<h1>Привет, $name</h1>";
-		echo "<h3>Тебе $age лет</h3>";
+		echo "<h1>РџСЂРёРІРµС‚, $name</h1>";
+		echo "<h3>РўРµР±Рµ $age Р»РµС‚</h3>";
 	}
 	else {
-		print "<h3>Заполните все поля!</h3>";
+		print "<h3>Р—Р°РїРѕР»РЅРёС‚Рµ РІСЃРµ РїРѕР»СЏ!</h3>";
 	}
 }
 ?>

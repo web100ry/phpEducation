@@ -16,29 +16,29 @@ else {
 
 <html>
 <head>
-	<title>Демонстрация сессии</title>
+	<title>Р”РµРјРѕРЅСЃС‚СЂР°С†РёСЏ СЃРµСЃСЃРёРё</title>
 </head>
 
 <body>
-<h1>Демонстрация сессии</h1>
-<a href="session-2.php">Демо сессии</a><br>
-<a href="session_destroy.php">Закрыть сессию</a><br><br>
+<h1>Р”РµРјРѕРЅСЃС‚СЂР°С†РёСЏ СЃРµСЃСЃРёРё</h1>
+<a href="session-2.php">Р”РµРјРѕ СЃРµСЃСЃРёРё</a><br>
+<a href="session_destroy.php">Р—Р°РєСЂС‹С‚СЊ СЃРµСЃСЃРёСЋ</a><br><br>
 <form action="<?=$_SERVER["PHP_SELF"]?>" 
 		method="post">
-	Ваше имя:
+	Р’Р°С€Рµ РёРјСЏ:
 	<input type="text" name="name" value="<?=$name?>"><br>
-	Ваш возраст:
+	Р’Р°С€ РІРѕР·СЂР°СЃС‚:
 	<input type="text" name="age" value="<?=$age?>"><br>
-	<input type="submit" value="Передать">
+	<input type="submit" value="РџРµСЂРµРґР°С‚СЊ">
 </form>
 <?
 if ($name and $age) {	
 	if ($name and $age) {
-		echo "<h1>Привет, $name</h1>";
-		echo "<h3>Тебе $age лет</h3>";
+		echo "<h1>РџСЂРёРІРµС‚, $name</h1>";
+		echo "<h3>РўРµР±Рµ $age Р»РµС‚</h3>";
 	}
 	else {
-		print "<h3>Заполните все поля!</h3>";
+		print "<h3>Р—Р°РїРѕР»РЅРёС‚Рµ РІСЃРµ РїРѕР»СЏ!</h3>";
 	}
 }
 ?>
