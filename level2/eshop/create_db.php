@@ -1,16 +1,16 @@
 <?php
-// Создание структуры Базы Данных гостевой книги
+// РЎРѕР·РґР°РЅРёРµ СЃС‚СЂСѓРєС‚СѓСЂС‹ Р‘Р°Р·С‹ Р”Р°РЅРЅС‹С… РіРѕСЃС‚РµРІРѕР№ РєРЅРёРіРё
 	define("DB_HOST", "localhost");
 	define("DB_LOGIN", "root");
-	define("DB_PASSWORD", "password");
+	define("DB_PASSWORD", "qwerty");
 	define("DB_NAME", "eshop");
 
-mysql_connect(DB_HOST, DB_LOGIN, DB_PASSWORD) or die(mysql_error());
+$connect=mysqli_connect(DB_HOST, DB_LOGIN, DB_PASSWORD,DB_NAME) or die(mysql_error());
 
 $sql = 'CREATE DATABASE ' . DB_NAME;
-mysql_query($sql) or die(mysql_error());
+//mysqli_query($connect,$sql) or die(mysqli_error($connect));
 
-mysql_select_db(DB_NAME) or die(mysql_error());
+//mysqli_select_db($connect,DB_NAME) or die(mysqli_error($connect));
 
 $sql = "
 CREATE TABLE catalog (
@@ -21,7 +21,7 @@ CREATE TABLE catalog (
 	price int(11) NOT NULL default 0,
 	PRIMARY KEY (id)
 )";
-mysql_query($sql) or die(mysql_error());
+mysqli_query($connect,$sql) or die(mysqli_error($connect));
 $sql = "
 CREATE TABLE basket (
 	id int(11) NOT NULL auto_increment,
@@ -31,7 +31,7 @@ CREATE TABLE basket (
 	datetime int(11) NOT NULL default 0,
 	PRIMARY KEY (id)
 )";
-mysql_query($sql) or die(mysql_error());
+mysqli_query($connect,$sql) or die(mysqli_error($connect));
 $sql = "
 CREATE TABLE orders (
 	id int(11) NOT NULL auto_increment,
@@ -44,9 +44,9 @@ CREATE TABLE orders (
 	datetime int(11) NOT NULL default 0,
 	PRIMARY KEY (id)
 )";
-mysql_query($sql) or die(mysql_error());
+mysqli_query($connect,$sql) or die(mysqli_error($connect));
 
-mysql_close();
+mysqli_close($connect);
 
-print '<p>Структура базы данных успешно создана!</p>';
+print '<p>РЎС‚СЂСѓРєС‚СѓСЂР° Р±Р°Р·С‹ РґР°РЅРЅС‹С… СѓСЃРїРµС€РЅРѕ СЃРѕР·РґР°РЅР°!</p>';
 ?>
