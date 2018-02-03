@@ -1,14 +1,14 @@
 <html>
 <head>
-	<title>Форма добавления товара в каталог</title>
+	<title>Р¤РѕСЂРјР° РґРѕР±Р°РІР»РµРЅРёСЏ С‚РѕРІР°СЂР° РІ РєР°С‚Р°Р»РѕРі</title>
 </head>
 <body>
 	<form action="save2cat.php" method="post">
-		<p>Автор: <input type="text" name="author" size="50">
-		<p>Название: <input type="text" name="title" size="100">
-		<p>Год издания: <input type="text" name="pubyear" size="4">
-		<p>Цена: <input type="text" name="price" size="6"> руб.
-		<p><input type="submit" value="Добавить">
+		<p>РђРІС‚РѕСЂ: <input type="text" name="author" size="50">
+		<p>РќР°Р·РІР°РЅРёРµ: <input type="text" name="title" size="100">
+		<p>Р“РѕРґ РёР·РґР°РЅРёСЏ: <input type="text" name="pubyear" size="4">
+		<p>Р¦РµРЅР°: <input type="text" name="price" size="6"> СЂСѓР±.
+		<p><input type="submit" value="Р”РѕР±Р°РІРёС‚СЊ">
 	</form>
 </body>
 </html>
