@@ -1,14 +1,23 @@
 <?php
-	/*
-	ЗАДАНИЕ 1
-	- Опишите функцию save(), сохраняющую новый товар в таблицу catalog
-	- Функция должна принимать следующие значения:
-			author
-			title
-			pubyear
-			price
 
-	*/
+function clearData($data,$type="s"){
+    switch ($type){
+        case "s": $data=trim(strip_tags($data));break; //mysqli_real_escape_string
+        case "i": $data=abs((int)$data);break;
+    }
+    return $data;
+}
+
+
+function save($author, $title, $pubyear, $price,  $connection){
+
+$sql= "INSERT INTO catalog (author, title, pubyear, price) VALUES ('$author', '$title', $pubyear, $price)";
+ // $sql ="SELECT * FROM catalog";
+   // echo "$author, $title, $pubyear, $price";
+    $result=mysqli_query ($connection, $sql) or die(mysqli_error($connection));
+
+}
+
 	
 	/*
 	ЗАДАНИЕ 2
