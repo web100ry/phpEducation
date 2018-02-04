@@ -10,6 +10,7 @@
 	<title>Каталог товаров</title>
 </head>
 <body>
+<p>Товарів в <a href="basket.php">корзині</a>:<?=$count?></p>
 <?php
 /*
 ЗАДАНИЕ 1
@@ -29,13 +30,21 @@
 	<th>В корзину</th>
 </tr>
 <?php
-	/*
-	ЗАДАНИЕ 2
-	- С помощью функции selectAll() получите выборку всех товаров
-	- В цикле выведите все товары на экран
-	- Значение ячейки "В корзину" оформите в виде гиперссылки на
-	документ add2basket.php, добавив параметр id с идентификатором(поле id) товара
-	*/
+$goods=selectAll($connection);
+//print_r($goods);
+foreach ($goods as $item){
+    ?>
+    <tr>
+        <td><?=$item["author"]?></td>
+        <td><?=$item["title"]?></td>
+        <td><?=$item["pubyear"]?></td>
+        <td><?=$item["price"]?></td>
+        <td><a href="basket.php?id=<?=$item["id"]?>">В корзину</a></td>
+
+    </tr>
+    <?php
+}
+
 ?>
 </table>
 </body>

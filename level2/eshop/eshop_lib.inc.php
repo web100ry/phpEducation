@@ -12,17 +12,27 @@ function clearData($data,$type="s"){
 function save($author, $title, $pubyear, $price,  $connection){
 
 $sql= "INSERT INTO catalog (author, title, pubyear, price) VALUES ('$author', '$title', $pubyear, $price)";
- // $sql ="SELECT * FROM catalog";
-   // echo "$author, $title, $pubyear, $price";
     $result=mysqli_query ($connection, $sql) or die(mysqli_error($connection));
 
 }
+function db2Array($data){
+    $arr = array();
+    while ($row = mysqli_fetch_assoc($data)){
+        $arr[]=$row;
+    }
+return $arr;
+}
 
-	
-	/*
-	ЗАДАНИЕ 2
-	- Опишите функцию selectAll(), возвращающую все содержимое каталога товаров
-	*/
+
+function selectAll($connection){
+    $sql ="SELECT * FROM catalog";
+    $result=mysqli_query ($connection, $sql) or die(mysqli_error($connection));
+return db2Array($result);
+}
+
+function add2basked($customer, $goodsid, $quantity, $datetime){
+
+}
 	
 	/*
 	ЗАДАНИЕ 3
