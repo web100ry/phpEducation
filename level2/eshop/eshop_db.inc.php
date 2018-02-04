@@ -13,11 +13,5 @@ $sql = "SELECT count(*) FROM basket WHERE customer='".session_id()."'";
 $res = mysqli_query($connection,$sql) or die(mysqli_error($connection));
 $count1 = mysqli_fetch_assoc($res);
 $count=$count1['count(*)'];
-/*
-	 * TODO
 
-	ЗАДАНИЕ 2
-	- Выполните SQL-оператор на выборку количества товаров в корзине данного пользователя
-	- Получите результат и сохраните его в значении переменной $count	
-	*/
 ?>

@@ -29,7 +29,30 @@
 	<th>Удалить</th>
 </tr>
 <?php
-	/*
+$books=myBasket($connection);
+$i=1;
+$sum=0;
+foreach ($books as $item) {
+    ?>
+    <tr>
+        <td><?= $i ?></td>
+        <td><?= $item["author"] ?></td>
+        <td><?= $item["title"] ?></td>
+        <td><?= $item["pubyear"] ?></td>
+        <td><?= $item["price"] ?></td>
+        <td><?= $item["quantity"] ?></td>
+        <td><a href="delete_from_basket.php?id=<?= $item["id"] ?>">DELETE</a></td>
+    </tr>
+
+
+    <?php
+
+    $i++;
+    $sum += $item["price"]*$item["quantity"];
+
+}
+
+/*
 	ЗАДАНИЕ 2
 	- Получите все товары из корзины пользователя в виде массива
 	- Создайте переменные для подсчета порядковых номеров ($i)
@@ -46,7 +69,8 @@
 
 <p>Всего товаров в корзине на сумму:
 <?php
-	/*
+echo $sum;
+/*
 	ЗАДАНИЕ 3
 	- Выведите общую сумму товаров в корзине
 	*/

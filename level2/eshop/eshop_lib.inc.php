@@ -41,15 +41,23 @@ function add2basked($customer, $goodsid, $quantity, $datetime, $connection){
     $result=mysqli_query ($connection, $sql) or die(mysqli_error($connection));
 }
 	
-	/*
-	ЗАДАНИЕ 3
-	- Опишите функцию add2basket(), которая будет добавлять товары в корзину пользователя
-	- Функция должна принимать следующие значения:
-			customer
-			goodsid
-			quantity
-			datetime
-	*/
+	function myBasket($connection){
+    $sql ="SELECT
+                author, title, pubyear, price,
+                basket.id, goodsid, customer,
+                quantity
+                FROM catalog, basket
+                WHERE customer = '".session_id()."'
+                AND catalog.id=basket.goodsid";
+$result=mysqli_query ($connection, $sql) or die(mysqli_error($connection));
+        return db2Array($result);
+}
+
+function basketDel($id,$connection){
+
+$sql ="DELETE FROM basket WHERE id=$id";
+$result=mysqli_query ($connection, $sql) or die(mysqli_error($connection));
+}
 	
 	/*
 	ЗАДАНИЕ 4

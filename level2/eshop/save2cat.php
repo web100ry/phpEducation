@@ -11,14 +11,5 @@ $price=$_POST["price"]*1;
 //save($author,$title,$pubyear,$price);
 save($author,$title,$pubyear,$price,$connection);
 header("Location: add2cat.php");
-	/*
-	ЗАДАНИЕ 1
-	- Получите и отфильтруйте данные из формы
-	
-	ЗАДАНИЕ 2
-	- Вызовите функцию save() для сохранения нового товара в БД
-	
-	ЗАДАНИЕ 3
-	- Переадресуйте пользователя на страницу добавления нового товара (add2cat.php)
-	*/
+
 ?>
