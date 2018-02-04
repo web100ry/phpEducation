@@ -39,7 +39,7 @@ foreach ($goods as $item){
         <td><?=$item["title"]?></td>
         <td><?=$item["pubyear"]?></td>
         <td><?=$item["price"]?></td>
-        <td><a href="basket.php?id=<?=$item["id"]?>">В корзину</a></td>
+        <td><a href="add2basket.php?id=<?=$item["id"]?>">В корзину</a></td>
 
     </tr>
     <?php

@@ -30,8 +30,15 @@ function selectAll($connection){
 return db2Array($result);
 }
 
-function add2basked($customer, $goodsid, $quantity, $datetime){
-
+function add2basked($customer, $goodsid, $quantity, $datetime, $connection){
+     $sql= "INSERT INTO basket (
+                            customer, 
+                            goodsid, 
+                            quantity, 
+                            datetime) 
+                            VALUES (
+                            '$customer', $goodsid, $quantity, $datetime)" ;
+    $result=mysqli_query ($connection, $sql) or die(mysqli_error($connection));
 }
 	
 	/*
