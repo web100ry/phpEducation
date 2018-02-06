@@ -58,18 +58,7 @@ function basketDel($id,$connection){
 $sql ="DELETE FROM basket WHERE id=$id";
 $result=mysqli_query ($connection, $sql) or die(mysqli_error($connection));
 }
-	
-	/*
-	ЗАДАНИЕ 4
-	- Опишите функцию myBasket(), которая будет возвращать всю пользовательскую корзину
-	*/
-	
-	/*
-	ЗАДАНИЕ 5
-	- Опишите функцию basketDel(), которая будет удалять товар из корзины пользователя
-	- Функция должна принимать следующие значения:
-			id
-	*/
+
 	
 	/*
 	ЗАДАНИЕ 6
