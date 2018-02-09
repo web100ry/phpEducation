@@ -2,7 +2,8 @@
 
 function clearData($data,$type="s"){
     switch ($type){
-        case "s": $data=trim(strip_tags($data));break; //mysqli_real_escape_string
+        case "s": $data=trim(strip_tags($data));break; //mysqli_real_escape_string?
+        case "sf": $data=trim(strip_tags($data));break;
         case "i": $data=abs((int)$data);break;
     }
     return $data;
@@ -59,7 +60,34 @@ $sql ="DELETE FROM basket WHERE id=$id";
 $result=mysqli_query ($connection, $sql) or die(mysqli_error($connection));
 }
 
-	
+	function resave($dt,$connection){
+    $goods = myBasket($connection);
+       // echo session_id();
+       // echo $goods;
+        foreach ($goods as $item){
+        $sql = "INSERT INTO orders (
+                  author,
+                  title,
+                  pubyear,
+                  price,
+                  customer,
+                  quantity,
+                  datetime) 
+            VALUES (
+                '{$item["author"]}',
+                 '{$item["title"]}',
+                '{$item["pubyear"]}',
+                {$item["price"]},
+                '{$item["customer"]}',
+                {$item["quantity"]},
+                $dt)" ;
+    $result=mysqli_query ($connection, $sql) or die(mysqli_error($connection));
+
+    $sql = "DELETE FROM basket WHERE customer='".session_id()."'";
+    $result=mysqli_query ($connection, $sql) or die(mysqli_error($connection));
+
+        }
+    }
 	/*
 	ЗАДАНИЕ 6
 	- Опишите функцию resave() для пересохранения товаров из корзины (таблица basket) в заказы (таблица orders)
