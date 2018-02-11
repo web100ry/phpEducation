@@ -1,5 +1,29 @@
 <?php
 
+class nameExc extends Exception{
+    function __construct($message = "", $code = 0, Throwable $previous = null)
+    {
+        $message .=" NAME";
+        parent::__construct($message, $code, $previous);
+    }
+}
+
+class logExc extends Exception{
+    function __construct($message = "", $code = 0, Throwable $previous = null)
+    {
+        $message .=" LOGIN";
+
+        parent::__construct($message, $code, $previous);
+    }
+}
+
+class passExc extends Exception{
+    function __construct($message = "", $code = 0, Throwable $previous = null)
+    {
+        $message .=" PASSWORD";
+        parent::__construct($message, $code, $previous);
+    }
+}
 class User{
     //властивості
 public $name;
@@ -8,18 +32,34 @@ public $password;
 
     // методи
     public function showInfo(){
-        echo "<p>User: ".$this->name."<br>";
-        echo "Login: ".$this->login."<br>";
-        echo "Pass: ".$this->password."<br>";
-}
-function __construct($name,$login,$password)
+
+    echo "<p>User: ".$this->name."<br>";
+    echo "Login: ".$this->login."<br>";
+    echo "Pass: ".$this->password."<br>";
+
+    }
+
+function __construct($name="",$login="",$password="")
 {
+    try{
+
+        if ($name == "")
+            throw new nameExc("Введіть: ");
     $this->name=$name;
+        if ($login == "")
+            throw new logExc("Введіть: ");
     $this->login=$login;
+        if ($password == "")
+            throw new passExc("Введіть: ");
     $this->password=$password;
 
+}
+catch (nameExc $e){echo $e->getMessage();}
+catch (logExc $e){echo $e->getMessage();}
+catch (passExc $e){echo $e->getMessage();}
 
 }
+
 function __clone()
 {
     // Implement __clone() method.
@@ -35,13 +75,36 @@ function __clone()
 class superUser extends User
 {
     public $role;
+
+    public function showInfo()
+    {
+        /*
+        echo "<p>User: " . $this->name . "<br>";
+        echo "Login: " . $this->login . "<br>";
+        echo "Pass: " . $this->password . "<br>";
+        */
+        parent::showInfo();
+        echo "Role: " . $this->role . "<br>";
+    }
+
+    function __construct($name, $login, $password, $role)
+    {
+       /*
+        $this->name = $name;
+        $this->login = $login;
+        $this->password = $password;
+       */
+       parent::__construct($name, $login, $password);
+       $this->role = $role;
+
+    }
 }
-$user5= new superUser("ADMINISTRATOR", "admin", "SuPeRqwerty");
+$user5= new superUser("ADMINISTRATOR", "admin", "SuPeRqwerty","SUPERadmin");
 
-     $user5->role="SUPERadmin";
+     //$user5->role="SUPERadmin";
 
 
-$user1=new User("USER","user1","user11");
+$user1=new User("user1","user11");
 /*
     $user1->name="USER1";
     $user1->login="user1";
@@ -68,23 +131,11 @@ echo $user3->showInfo();
 $user4 = clone $user1;
 $user4->name="Vasya";
 echo $user4->showInfo();
+
 echo $user5->showInfo();
-echo $user5->role;
 
 
-	/*
-	ЗАДАНИЕ 6
-	- Опишите конструктор класса SuperUser, который будет задавать начальные значения свойств
-	- В классе SuperUser опишите метод showInfo(), который будет выводить на экран значения всех свойств
-	- Создайте заново объект класса SuperUser и вызовите метод showInfo().
-	*/
-	/*
-	ЗАДАНИЕ 7
-	- Измените конструктор класса SuperUser, вызвав родительский конструктор
-	- Передайте родительскому конструктору необходимые значения
-	- Измените метод showInfo() класса SuperUser, вызвав родительский метод showInfo()
-	- Передайте родительскому методу необходимые значения
-	*/
+
 	/*
 	ЗАДАНИЕ 8
 	- Сделайте все параметры конструктора класса User параметрами по умолчанию со значениями "пустая строка"("")
