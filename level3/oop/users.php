@@ -7,55 +7,71 @@ public $login;
 public $password;
 
     // методи
+    public function showInfo(){
+        echo "<p>User: ".$this->name."<br>";
+        echo "Login: ".$this->login."<br>";
+        echo "Pass: ".$this->password."<br>";
+}
+function __construct($name,$login,$password)
+{
+    $this->name=$name;
+    $this->login=$login;
+    $this->password=$password;
+
+
+}
+function __clone()
+{
+    // Implement __clone() method.
+   $this->name="GUEST";
+   $this->login="guest";
+   $this->password="qwerty";
+
 }
 
-$user1=new User();
+}
+
+
+class superUser extends User
+{
+    public $role;
+}
+$user5= new superUser("ADMINISTRATOR", "admin", "SuPeRqwerty");
+
+     $user5->role="SUPERadmin";
+
+
+$user1=new User("USER","user1","user11");
+/*
     $user1->name="USER1";
     $user1->login="user1";
     $user1->password="user11";
-$user2=new User();
+*/
+
+$user2=new User("USER2","user2","user22");
+
+/*
     $user2->name="USER2";
     $user2->login="user2";
     $user2->password="user22";
-$user3=new User();
+*/
+
+$user3=new User("USER3","user3","user33");
+/*
     $user3->name="USER3";
     $user3->login="user3";
     $user3->password="user33";
+*/
+echo $user1->showInfo();
+echo $user2->showInfo();
+echo $user3->showInfo();
+$user4 = clone $user1;
+$user4->name="Vasya";
+echo $user4->showInfo();
+echo $user5->showInfo();
+echo $user5->role;
 
-echo $user1->password;
-	/*
-	ЗАДАНИЕ 1
-	- Создайте класс User со свойствами name, login и password
-	- Создайте три объекта, экземпляра класса User
-	- Задайте произвольные значения свойств name, login и password для каждого из объектов
-	*/
-	/*
-	ЗАДАНИЕ 2
-	- В классе User опишите метод showInfo()
-	- Метод showInfo() должен выводить значения свойств объектов
-	- Вызовите метод showInfo() для каждого объекта
-	*/
-	/*
-	ЗАДАНИЕ 3
-	- В классе User опишите конструктор
-	- Конструктор должен задавать начальные значения свойств name, login и password
-	- Создайте заново три объекта, экземпляра класса User
-	*/
-	/*
-	ЗАДАНИЕ 4
-	- В классе User опишите метод __clone()
-	- Метод __clone() должен задавать начальные значения свойств по умолчанию при копировании объектов
-	- Значения свойств по умолчанию: name = "Guest", login = "guest", password = "qwerty" 
-	- Создайте четвёртый объект скопировав один из имеющихся объектов
-	*/
-	/*
-	ЗАДАНИЕ 5
-	- Опишите класс SuperUser наследованный от класса User
-	- В классе SuperUser опишите свойство role и создайте объект, экземпляр класса SuperUser
-	- Задайте значение свойству role = "admin"
-	- Вызовите метод showInfo() для созданного объекта 
-	- Отдельно от метода showInfo() выведите значение свойства role
-	*/
+
 	/*
 	ЗАДАНИЕ 6
 	- Опишите конструктор класса SuperUser, который будет задавать начальные значения свойств
