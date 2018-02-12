@@ -24,6 +24,17 @@ class User extends AUser implements IsuperUser
 
     // методи
 
+    function __get($name)
+    {
+        // Implement __get() method.
+        return $this->user[$name];
+    }
+    function __set($name, $value)
+    {
+        // Implement __set() method.
+        $this->user[$name]=$value;
+    }
+
 
     function getInfo()
     {
