@@ -1,5 +1,10 @@
 <?php
 
+interface IsuperUser{
+    function getInfo();
+}
+
+
 abstract class AUser{
     abstract function showInfo();
 }
@@ -47,8 +52,9 @@ class passExc extends Exception
  * Class User
  */
 
-class User extends AUser
+class User implements IsuperUser
 {
+
     const INFO_TITLE = "Карточка користувача";
     //властивості
     public $name;
@@ -56,6 +62,16 @@ class User extends AUser
     public $password;
 
     // методи
+
+
+    function getInfo()
+    {
+        //  Implement getInfo() method.
+    foreach ($this as $name=>$item){
+        print "$name=>$item <br>";
+    }
+    }
+
 
     /**
      * @inheritdoc
@@ -190,6 +206,7 @@ $user4->showTitle();
 echo $user4->showInfo();
 $user5->showTitle();
 echo $user5->showInfo();
+$user5->getInfo();
 
 
 
