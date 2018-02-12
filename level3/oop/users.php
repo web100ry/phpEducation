@@ -1,5 +1,10 @@
 <?php
 
+abstract class AUser{
+    abstract function showInfo();
+}
+
+
 
 class nameExc extends Exception
 {
@@ -41,7 +46,8 @@ class passExc extends Exception
 /**
  * Class User
  */
-class User
+
+class User extends AUser
 {
     const INFO_TITLE = "Карточка користувача";
     //властивості
@@ -106,6 +112,9 @@ class User
 
     }
 
+    /**
+     *демонстрація звернення до константи класу в методі
+     */
     function showTitle()
     {
         echo "<p>" . self::INFO_TITLE . "<br>";
@@ -183,16 +192,7 @@ $user5->showTitle();
 echo $user5->showInfo();
 
 
-""
 
-/*
-ЗАДАНИЕ 10
-- Создайте абстрактный класс AUser
-- В абстрактном классе AUser объявите абстрактный метод showInfo()
-- Обновите класс User, унаследовав его от абстрактного класса AUser
-- Внесите в класс User необходимые изменения
-- Запустите код и проверьте его работоспособность
-*/
 /*
 ЗАДАНИЕ 11
 - Создайте интерфейс ISuperUser
