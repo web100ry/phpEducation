@@ -134,6 +134,7 @@ class User extends AUser implements IsuperUser
         $this->name = "GUEST";
         $this->login = "guest";
         $this->password = "qwerty";
+        ++self::$countUser;
 
     }
 
@@ -150,7 +151,7 @@ class User extends AUser implements IsuperUser
 class superUser extends User
 {
     public $role;
-
+static $countAdmin=0;
     public function showInfo()
     {
         /*
@@ -171,8 +172,8 @@ class superUser extends User
         */
         parent::__construct($name, $login, $password);
         $this->role = $role;
-
-            ++self::$countUser;
+            ++self::$countAdmin;
+            --self::$countUser;
 
 
     }
@@ -218,7 +219,9 @@ $user4->showTitle();
 echo $user4->showInfo();
 $user5->showTitle();
 echo $user5->showInfo();
-echo User::$countUser."<br>";
+echo "<hr>";
+echo "USERs: ".User::$countUser."<br>";
+echo "ADMINs: ".superUser::$countAdmin."<br>";
 var_dump($user5->getInfo());
 
 
