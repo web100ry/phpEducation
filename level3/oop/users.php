@@ -61,10 +61,9 @@ class User extends AUser implements IsuperUser
     public $name;
     public $login;
     public $password;
-    static $countUser=0;
+    static $countUser = 0;
 
     // методи
-
 
 
     function getInfo()
@@ -101,7 +100,7 @@ class User extends AUser implements IsuperUser
     function __construct($name = "", $login = "", $password = "")
     {
 
-            ++self::$countUser;
+        ++self::$countUser;
 
         try {
 
@@ -151,7 +150,8 @@ class User extends AUser implements IsuperUser
 class superUser extends User
 {
     public $role;
-static $countAdmin=0;
+    static $countAdmin = 0;
+
     public function showInfo()
     {
         /*
@@ -172,8 +172,8 @@ static $countAdmin=0;
         */
         parent::__construct($name, $login, $password);
         $this->role = $role;
-            ++self::$countAdmin;
-            --self::$countUser;
+        ++self::$countAdmin;
+        --self::$countUser;
 
 
     }
@@ -206,36 +206,42 @@ $user3 = new User("USER3", "user3", "user33");
     $user3->password="user33";
 */
 echo "<p> Загальна " . User::INFO_TITLE . "<br>";
-$user1->showTitle();
-echo $user1->showInfo();
-$user2->showTitle();
-echo $user2->showInfo();
-$user3->showTitle();
-echo $user3->showInfo();
 
+$user1->showTitle();
+    echo $user1->showInfo();
+        checkObject($user1);
+$user2->showTitle();
+    echo $user2->showInfo();
+        checkObject($user2);
+$user3->showTitle();
+    echo $user3->showInfo();
+        checkObject($user3);
 $user4 = clone $user1;
-$user4->name = "Vasya";
-$user4->showTitle();
-echo $user4->showInfo();
+    $user4->name = "Vasya";
+    $user4->showTitle();
+    echo $user4->showInfo();
+        checkObject($user4);
 $user5->showTitle();
-echo $user5->showInfo();
+    echo $user5->showInfo();
+        checkObject($user5);
+
 echo "<hr>";
-echo "USERs: ".User::$countUser."<br>";
-echo "ADMINs: ".superUser::$countAdmin."<br>";
+    echo "USERs: " . User::$countUser . "<br>";
+    echo "ADMINs: " . superUser::$countAdmin . "<br>";
+
 var_dump($user5->getInfo());
 
+function checkObject($object)
+{
+    if ($object instanceof User){
+        if ($object instanceof SuperUser)
+            echo "User - ADMIN";
+        else
+            echo "User - USER";
+    }else
+        echo "NOT USER!!!";
+}
 
-/*
-ЗАДАНИЕ 13
-- Опишите функцию checkObject(), которая принимает в качестве входящего параметра объект
-- Проверьте Ваш объект, используя следующие условия:
-  Если объект является экземпляром класса SuperUser, выводите сообщение,
-    что данный пользователь обладает правами администратора
-  Если объект является экземпляром класса User, выводите сообщение,
-    что данный пользователь является обычным пользователем
-  Если объект не является ни тем, ни другим, выводите сообщение,
-    что данный пользователь - неизвестный пользователь
-*/
 /*
 ЗАДАНИЕ 14
 - В директории "oop" создайте файл "User.class.php"
