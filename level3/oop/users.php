@@ -1,4 +1,8 @@
 <?php
+function __autoload($name)
+{
+ include $name.".class.php";
+}
 
 interface IsuperUser
 {
@@ -50,134 +54,6 @@ class passExc extends Exception
     }
 }
 
-/**
- * Class User
- */
-class User extends AUser implements IsuperUser
-{
-
-    const INFO_TITLE = "Карточка користувача";
-    //властивості
-    public $name;
-    public $login;
-    public $password;
-    static $countUser = 0;
-
-    // методи
-
-
-    function getInfo()
-    {
-        //  Implement getInfo() method.
-        $arr = array();
-        foreach ($this as $name => $item) {
-            //print "$name=>$item <br>";
-            $arr[$name] = $item;
-        }
-        return $arr;
-    }
-
-
-    /**
-     * @inheritdoc
-     */
-    public function showInfo()
-    {
-
-        echo "<p>User: " . $this->name . "<br>";
-        echo "Login: " . $this->login . "<br>";
-        echo "Pass: " . $this->password . "<br>";
-
-    }
-
-    /**
-     * User constructor.
-     *
-     * @param string $name
-     * @param string $login
-     * @param string $password
-     */
-    function __construct($name = "", $login = "", $password = "")
-    {
-
-        ++self::$countUser;
-
-        try {
-
-            if ($name == "")
-                throw new nameExc("Введіть: ");
-            $this->name = $name;
-            if ($login == "")
-                throw new logExc("Введіть: ");
-            $this->login = $login;
-            if ($password == "")
-                throw new passExc("Введіть: ");
-            $this->password = $password;
-
-
-        } catch (nameExc $e) {
-            echo $e->getMessage();
-        } catch (logExc $e) {
-            echo $e->getMessage();
-        } catch (passExc $e) {
-            echo $e->getMessage();
-        }
-
-        return true;
-
-    }
-
-    function __clone()
-    {
-        // Implement __clone() method.
-        $this->name = "GUEST";
-        $this->login = "guest";
-        $this->password = "qwerty";
-        ++self::$countUser;
-
-    }
-
-    /**
-     *демонстрація звернення до константи класу в методі
-     */
-    function showTitle()
-    {
-        echo "<p>" . self::INFO_TITLE . "<br>";
-    }
-}
-
-
-class superUser extends User
-{
-    public $role;
-    static $countAdmin = 0;
-
-    public function showInfo()
-    {
-        /*
-        echo "<p>User: " . $this->name . "<br>";
-        echo "Login: " . $this->login . "<br>";
-        echo "Pass: " . $this->password . "<br>";
-        */
-        parent::showInfo();
-        echo "Role: " . $this->role . "<br>";
-    }
-
-    function __construct($name, $login, $password, $role)
-    {
-        /*
-         $this->name = $name;
-         $this->login = $login;
-         $this->password = $password;
-        */
-        parent::__construct($name, $login, $password);
-        $this->role = $role;
-        ++self::$countAdmin;
-        --self::$countUser;
-
-
-    }
-}
 
 $user5 = new superUser("ADMINISTRATOR", "admin", "SuPeRqwerty", "SUPERadmin");
 
@@ -233,6 +109,7 @@ var_dump($user5->getInfo());
 
 function checkObject($object)
 {
+ // is_a($object,"User"); // аналогічна функція визначення приналежність об'єкту до класу
     if ($object instanceof User){
         if ($object instanceof SuperUser)
             echo "User - ADMIN";
@@ -242,16 +119,7 @@ function checkObject($object)
         echo "NOT USER!!!";
 }
 
-/*
-ЗАДАНИЕ 14
-- В директории "oop" создайте файл "User.class.php"
-- Перенесите описание класса User из файла "users.php" в файл "User.class.php"
-- В директории "oop" создайте файл "SuperUser.class.php"
-- Перенесите описание класса SuperUser из файла "users.php" в файл "SuperUser.class.php"
-- Посторите те же действия для класса AUser и интерфейса ISuperUser
-- В файле "users.php"(данный файл) опишите функцию __autoload(),
-    которая автоматически присоединяет файлы с описанием классов к файлу "users.php"
-*/
+
 /*
 ЗАДАНИЕ 15
 - Создайте свойство objNum, которое будет хранить порядковый номер объекта.
