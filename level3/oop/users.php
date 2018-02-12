@@ -8,6 +8,7 @@ interface IsuperUser
 
 abstract class AUser
 {
+
     abstract function showInfo();
 }
 
@@ -60,8 +61,10 @@ class User extends AUser implements IsuperUser
     public $name;
     public $login;
     public $password;
+    static $countUser=0;
 
     // методи
+
 
 
     function getInfo()
@@ -97,6 +100,9 @@ class User extends AUser implements IsuperUser
      */
     function __construct($name = "", $login = "", $password = "")
     {
+
+            ++self::$countUser;
+
         try {
 
             if ($name == "")
@@ -166,6 +172,9 @@ class superUser extends User
         parent::__construct($name, $login, $password);
         $this->role = $role;
 
+            ++self::$countUser;
+
+
     }
 }
 
@@ -209,16 +218,10 @@ $user4->showTitle();
 echo $user4->showInfo();
 $user5->showTitle();
 echo $user5->showInfo();
+echo User::$countUser."<br>";
 var_dump($user5->getInfo());
 
 
-/*
-ЗАДАНИЕ 12
-- Опишите в классах User и SuperUser статические свойства для подсчета количества созданных объектов
-- Присвойте этим свойствам начальные значения (0)
-- В конструкторах инкрементируйте значения данных свойств
-- После создания экземпляров классов User и SuperUser выведите в браузер количество тех и других объектов
-*/
 /*
 ЗАДАНИЕ 13
 - Опишите функцию checkObject(), которая принимает в качестве входящего параметра объект
