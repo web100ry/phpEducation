@@ -43,6 +43,7 @@ class passExc extends Exception
  */
 class User
 {
+    const INFO_TITLE = "Карточка користувача";
     //властивості
     public $name;
     public $login;
@@ -105,6 +106,10 @@ class User
 
     }
 
+    function showTitle()
+    {
+        echo "<p>" . self::INFO_TITLE . "<br>";
+    }
 }
 
 
@@ -162,28 +167,24 @@ $user3 = new User("USER3", "user3", "user33");
     $user3->login="user3";
     $user3->password="user33";
 */
-
+echo "<p> Загальна " . User::INFO_TITLE . "<br>";
+$user1->showTitle();
 echo $user1->showInfo();
+$user2->showTitle();
 echo $user2->showInfo();
+$user3->showTitle();
 echo $user3->showInfo();
+
 $user4 = clone $user1;
 $user4->name = "Vasya";
+$user4->showTitle();
 echo $user4->showInfo();
-
+$user5->showTitle();
 echo $user5->showInfo();
 
 
 ""
-/*
-ЗАДАНИЕ 9
-- Создайте константу класса User INFO_TITLE
-- Присвойте константе INFO_TITLE строковое значение "Данные пользователя:"
-- Обратитесь к константе INFO_TITLE перед вызовами метода showInfo()
-- Запустите код и проверьте его работоспособность
-- Создайте метод showTitle() в классе User
-- Опишите метод showTitle(), чтобы он выводил в браузер значение константы INFO_TITLE
-- Обратитесь к метод showTitle() перед вызовами метода showInfo()
-*/
+
 /*
 ЗАДАНИЕ 10
 - Создайте абстрактный класс AUser

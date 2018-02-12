@@ -21,7 +21,7 @@ class Car
     public $year = "2018"; //рік випіску за умовчанням
     public $speed;
     public $model;
-
+const DRIVER = 1;
     // конструктор класа . Те, що виконуэться автомматично при створені об'єкта
     //function __construct($num)
 
@@ -41,7 +41,7 @@ class Car
     {
 
         //Implement __destruct() method.
-        echo "Object DESTRUCT";
+        echo "Object DESTRUCT ". self::DRIVER; //вивід константи в середині класу
     }
 
     // методи (функція в класі)
@@ -79,7 +79,7 @@ echo $car2->getSpeed() . "<br>";
 
 echo $car1->year;
 echo $car1->speed;
-echo $car1->model;
+echo $car1->model."WITH DRIVER NUM:".Car::DRIVER."<br>"; //вивід константи із класу
 echo $car1->myMethod() . "<br>";
 echo $car1->getClassName() . "<br>";
 
