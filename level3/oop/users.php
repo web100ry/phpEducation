@@ -1,14 +1,15 @@
 <?php
 
-interface IsuperUser{
+interface IsuperUser
+{
     function getInfo();
 }
 
 
-abstract class AUser{
+abstract class AUser
+{
     abstract function showInfo();
 }
-
 
 
 class nameExc extends Exception
@@ -51,8 +52,7 @@ class passExc extends Exception
 /**
  * Class User
  */
-
-class User implements IsuperUser
+class User extends AUser implements IsuperUser
 {
 
     const INFO_TITLE = "Карточка користувача";
@@ -67,9 +67,12 @@ class User implements IsuperUser
     function getInfo()
     {
         //  Implement getInfo() method.
-    foreach ($this as $name=>$item){
-        print "$name=>$item <br>";
-    }
+        $arr = array();
+        foreach ($this as $name => $item) {
+            //print "$name=>$item <br>";
+            $arr[$name] = $item;
+        }
+        return $arr;
     }
 
 
@@ -206,8 +209,7 @@ $user4->showTitle();
 echo $user4->showInfo();
 $user5->showTitle();
 echo $user5->showInfo();
-$user5->getInfo();
-
+var_dump($user5->getInfo());
 
 
 /*
