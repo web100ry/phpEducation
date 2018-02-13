@@ -9,10 +9,8 @@ interface IsuperUser
     function getInfo();
 }
 
-
 abstract class AUser
 {
-
     abstract function showInfo();
 }
 
@@ -86,20 +84,29 @@ echo "<p> Загальна " . User::INFO_TITLE . "<br>";
 $user1->showTitle();
     echo $user1->showInfo();
         checkObject($user1);
+    echo $user1;
+
 $user2->showTitle();
     echo $user2->showInfo();
         checkObject($user2);
-$user3->showTitle();
+    echo $user2;
+
+        $user3->showTitle();
     echo $user3->showInfo();
         checkObject($user3);
+    echo $user3;
+
 $user4 = clone $user1;
-    $user4->name = "Vasya";
-    $user4->showTitle();
+        $user4->name = "Vasya";
+        $user4->showTitle();
     echo $user4->showInfo();
         checkObject($user4);
+    echo $user4;
+
 $user5->showTitle();
     echo $user5->showInfo();
         checkObject($user5);
+    echo $user5;
 
 echo "<hr>";
     echo "USERs: " . User::$countUser . "<br>";
@@ -119,17 +126,8 @@ function checkObject($object)
         echo "NOT USER!!!";
 }
 
+$user6= new User;
+echo "<br>";
+$user6->blabla();
 
-/*
-ЗАДАНИЕ 15
-- Создайте свойство objNum, которое будет хранить порядковый номер объекта.
-  Подумайте, где лучше его создать?
-- Внесите изменения в классе User (а может и в SuperUser?), которые будут присваивать свойству objNum,
-  порядковый номер объекта.
-  Подумайте, где и как лучше это сделать?
-- В классе User (а может и в SuperUser?) опишите метод __toString()
-- Данный метод должен возвращать строку в формате "Объект #objNum: name".
-  Например: "Объект #3: Василий Пупкин"
-- Попробуйте преобразовать один из созданных Вами объектов в строку
-*/
 ?>

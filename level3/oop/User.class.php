@@ -14,7 +14,8 @@
 
 class User extends AUser implements IsuperUser
 {
-
+    public $objNum=0;
+    static $countAllUsers;
     const INFO_TITLE = "Карточка користувача";
     //властивості
     public $name;
@@ -23,6 +24,9 @@ class User extends AUser implements IsuperUser
     static $countUser = 0;
 
     // методи
+    function __toString(){
+       return "<p> Користувач ".$this->name." номер".$this->objNum."<br>";
+    }
 
     function __get($name)
     {
@@ -47,6 +51,12 @@ class User extends AUser implements IsuperUser
         return $arr;
     }
 
+    function __call($name, $arguments)
+    {
+        // Implement __call() method.
+        echo "Метода $name не існує!";
+
+    }
 
     /**
      * @inheritdoc
@@ -71,6 +81,8 @@ class User extends AUser implements IsuperUser
     {
 
         ++self::$countUser;
+        ++self::$countAllUsers;
+        $this->objNum=self::$countAllUsers;
 
         try {
 
@@ -104,6 +116,8 @@ class User extends AUser implements IsuperUser
         $this->login = "guest";
         $this->password = "qwerty";
         ++self::$countUser;
+        ++self::$countAllUsers;
+        $this->objNum=self::$countAllUsers;
 
     }
 

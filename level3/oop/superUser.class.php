@@ -11,6 +11,7 @@ class superUser extends User
     public $role;
     static $countAdmin = 0;
 
+
     public function showInfo()
     {
         /*
@@ -24,6 +25,7 @@ class superUser extends User
 
     function __construct($name, $login, $password, $role)
     {
+
         /*
          $this->name = $name;
          $this->login = $login;
@@ -33,6 +35,8 @@ class superUser extends User
         $this->role = $role;
         ++self::$countAdmin;
         --self::$countUser;
+       // ++self::$countAllUsers;
+        $this->objNum=self::$countAllUsers;
 
 
     }
