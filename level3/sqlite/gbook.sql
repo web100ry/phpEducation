@@ -1,4 +1,4 @@
-################### Таблица msgs ######################
+
 CREATE TABLE msgs(
 	id INTEGER PRIMARY KEY,
 	name TEXT,
@@ -7,4 +7,4 @@ CREATE TABLE msgs(
 	datetime INTEGER,
 	ip TEXT
 )
-#######################################################
+
