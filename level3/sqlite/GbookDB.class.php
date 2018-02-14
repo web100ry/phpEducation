@@ -1,4 +1,39 @@
 <?php
+include "IGbookDB.class.php";
+
+class GbookDB implements IGbookDB {
+    const DB_NAME = "gbook.db";
+    protected $_db;
+
+    function __construct()
+    {
+        $this->_db = new SQLite3(self::DB_NAME);
+    }
+    function savePost($name, $email, $msg){
+        unset($this->_db);
+    }
+
+    function getAll(){
+
+    }
+
+    function deletePost($id){
+
+    }
+
+
+    function __destruct()
+    {
+
+
+    }
+
+
+}
+
+$gbook = new GbookDB();
+unset($gbook);
+
 /*
 ЗАДАНИЕ 1
 - Создайте класс GbookDB наследующий интерфейс IGbookDB

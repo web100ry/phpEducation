@@ -8,9 +8,10 @@
 // PROCEDURE ==========
 echo "test";
 //$db = sqlite_open("test1.db");
-
-//phpinfo();
+phpinfo();
 //sqlite_close($db);
+
+
 // OOP ================
 ///$db1=new SQLiteDatabase("test.db");
 //$sql="CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, age INTEGER )";
@@ -19,6 +20,7 @@ echo "test";
 //
 //unset($db1);
 ?>
+
 <?php
 class MyDB extends SQLite3
 {
@@ -28,8 +30,10 @@ class MyDB extends SQLite3
     }
 }
 $db = new MyDB();
-$db->exec('CREATE TABLE foo (bar STRING)');
+//$db->exec('CREATE TABLE foo (bar STRING)');
 $db->exec("INSERT INTO foo (bar) VALUES ('This is a test')");
 $result = $db->query('SELECT bar FROM foo');
 var_dump($result->fetchArray());
+$clear=sqlite_escape_string($string);// фильтр тегів
+
 ?>
