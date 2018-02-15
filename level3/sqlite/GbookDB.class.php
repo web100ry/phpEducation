@@ -6,6 +6,15 @@ class GbookDB implements IGbookDB
     const DB_NAME = "gbook.db";
     protected $_db;
 
+    function clearData($data){
+        $data= stripcslashes($data);
+        $data= strip_tags($data);
+        $data= trim($data);
+        $data= SQLite3::escapeString($data);
+        return $data;
+    }
+
+
     function __construct()
     {
         if (!file_exists(self::DB_NAME)) {
@@ -15,7 +24,7 @@ class GbookDB implements IGbookDB
                     name TEXT,
                     email TEXT,
                     msg TEXT,
-                    datetime INTEGER,
+                    dt INTEGER,
                     ip TEXT
                     )";
             $this->_db->query($sql);
@@ -28,7 +37,22 @@ class GbookDB implements IGbookDB
 
     function savePost($name, $email, $msg)
     {
-
+        $ip=$_SERVER["REMOTE_ADDR"];
+        $dt = time();
+        $sql="INSERT INTO msgs(
+              name,
+              email,
+              msg,
+              ip,
+              dt)
+              VALUES (
+              '$name',
+              '$email',
+              '$msg',
+              '$ip',
+              $dt)";
+        $this->_db->exec($sql);
+      //  $this->_db->query($sql);
     }
 
     function getAll()
@@ -52,16 +76,6 @@ class GbookDB implements IGbookDB
 }
 
 
-
-
-
-/*
-ЗАДАНИЕ 2
-- Измените конструктор так, чтобы в нём выполнялась проверка, существует ли база данных на следующих условиях: 
-  Если базы данных не существует, создайте ее и выполните SQL-операторы для добавления таблицы (файл gbook.sql). 
-  В противном случае, выполняйте подключение к существующей базе данных
-- Для проверки работоспособности кода запустите данный файл в браузере и убедитесь, что файл gbook.db создан  
-*/
 
 /*
 ЗАДАНИЕ 3
