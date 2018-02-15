@@ -1,50 +1,59 @@
 <?php
 include "IGbookDB.class.php";
 
-class GbookDB implements IGbookDB {
+class GbookDB implements IGbookDB
+{
     const DB_NAME = "gbook.db";
     protected $_db;
 
     function __construct()
     {
-        $this->_db = new SQLite3(self::DB_NAME);
-    }
-    function savePost($name, $email, $msg){
-        unset($this->_db);
+        if (!file_exists(self::DB_NAME)) {
+            $this->_db = new SQLite3(self::DB_NAME);
+            $sql = "CREATE TABLE msgs(
+                    id INTEGER PRIMARY KEY,
+                    name TEXT,
+                    email TEXT,
+                    msg TEXT,
+                    datetime INTEGER,
+                    ip TEXT
+                    )";
+            $this->_db->query($sql);
+        }else{
+
+            $this->_db = new SQLite3(self::DB_NAME);
+        }
+
     }
 
-    function getAll(){
+    function savePost($name, $email, $msg)
+    {
 
     }
 
-    function deletePost($id){
+    function getAll()
+    {
+
+    }
+
+    function deletePost($id)
+    {
 
     }
 
 
     function __destruct()
     {
-
+        unset($this->_db);
 
     }
 
 
 }
 
-$gbook = new GbookDB();
-unset($gbook);
 
-/*
-ЗАДАНИЕ 1
-- Создайте класс GbookDB наследующий интерфейс IGbookDB
-- Создайте константу класса DB_NAME и присвойте ей значение gbook.db - имя базы данных
-- Создайте закрытое свойство $_db для хранения объекта соединения с базой данных
-- Создайте конструктор, в котором выполняется подключение к базе данных
-- Создайте деструктор, в котором выполняется закрытие соединения с базой данных
-- Создайте временный объект gbook, экземпляр класса GbookDB
-- Для проверки работоспособности кода запустите данный файл в браузере и убедитесь, что файл gbook.db создан
-- Удалите файл gbook.db
-*/
+
+
 
 /*
 ЗАДАНИЕ 2
