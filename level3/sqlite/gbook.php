@@ -7,11 +7,10 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     include "savepost.inc.php";
 }
 
-/*
-ЗАДАНИЕ 5
-- Проверьте, был ли запрос методом GET на удаление записи
-- Если ДА, то подключите файл с кодом для удаления записи
-*/
+if(isset($_GET["d"])){
+    include "deletepost.inc.php";
+}
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">

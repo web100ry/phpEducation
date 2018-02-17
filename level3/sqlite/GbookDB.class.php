@@ -68,8 +68,10 @@ class GbookDB implements IGbookDB
 
     function deletePost($id)
     {
-
+$sql = "DELETE FROM msgs WHERE id = $id";
+ if(!$this->_db->query($sql)) echo "Помилка видалення! ";
     }
+
 
 
     function __destruct()
@@ -81,14 +83,6 @@ class GbookDB implements IGbookDB
 
 }
 
-
-
-/*
-ЗАДАНИЕ 4
-- Опишите метод getAll. Смотрите описание метода в интерфейсе IGbookDB
-- Сформируйте строку запроса на выборку всех данных из таблицы msgs в обратном порядке
-- Получите и верните результат запроса
-*/
 
 /*
 ЗАДАНИЕ 5
