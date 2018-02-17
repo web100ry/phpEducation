@@ -51,7 +51,15 @@ class GbookDB implements IGbookDB
               '$msg',
               '$ip',
               $dt)";
-        $this->_db->exec($sql);
+    try{
+        $res=$this->_db->exec($sql);
+        if(!$res)
+            throw new SQLiteException(sqlite_error_string($this->_db->lastErrorMsg()));
+        return true;
+    }catch (SQLiteException $e){
+        return false;
+    }
+
       //  $this->_db->query($sql);
     }
 

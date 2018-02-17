@@ -6,8 +6,11 @@
 
 if(!empty($name) and !empty($email) and !empty($msg)){
 
-    $gbook->savePost($name,$email,$msg);
-    header("Location: gbook.php");
+    $res = $gbook->savePost($name,$email,$msg);
+    if ($res)
+        header("Location: gbook.php");
+    else
+        $errMsg = "Помилка додавання повідомлення!";
 
 }else{
     $errMsg = "Заповніть всі поля форми!";
