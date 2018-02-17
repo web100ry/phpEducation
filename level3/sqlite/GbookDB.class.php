@@ -57,7 +57,13 @@ class GbookDB implements IGbookDB
 
     function getAll()
     {
-
+        $sql="SELECT * FROM msgs ORDER BY id DESC";
+        $result=$this->_db->query($sql);
+        $data= array();
+        while ($res= $result->fetchArray(SQLITE3_ASSOC)) {
+            array_push($data, $res);
+        }
+    return $data;
     }
 
     function deletePost($id)
@@ -76,15 +82,6 @@ class GbookDB implements IGbookDB
 }
 
 
-
-/*
-ЗАДАНИЕ 3
-- Опишите метод savePost. Смотрите описание метода в интерфейсе IGbookDB
-- Получите данные о текущих дате и времени
-- Получите данные об IP адресе пользователя	
-- Сформируйте строку запроса на добавление новой записи
-- Добавьте новую запись в таблицу msgs	
-*/
 
 /*
 ЗАДАНИЕ 4
