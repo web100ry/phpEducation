@@ -7,7 +7,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     include "savepost.inc.php";
 }
 //web100ry - test git  NEW branch from other comp
-gittif(isset($_GET["d"])){
+if(isset($_GET["d"])){
     include "deletepost.inc.php";
 }
 
