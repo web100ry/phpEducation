@@ -1,16 +1,26 @@
 <?php
-$parcer= xml_parser_create(["utf-8"]);// парсер
-function onStart($xml, $tag, $attr){ //функция-обработчик начальных тегов
 
-}
-function onEnd ($xml, $tag){ // функция-обработчик закр. тегов
 
+function onStart($sax, $tag, $att){ //функция-обработчик начальных тегов
+if ($tag != "CATALOG" and $tag != "BOOK")
+    echo "<td>";
+if ($tag =="BOOK")
+    echo "<tr>";
 }
-function onTex ($xml, $tag){ //функцию-обработчик текстового содержимого
+function onEnd ($sax, $tag){ // функция-обработчик закр. тегов
+    if ($tag != "CATALOG" and $tag != "BOOK")
+        echo "</td>";
+    if ($tag =="BOOK")
+        echo "</tr>";
+}
+function onText ($sax, $text){ //функцию-обработчик текстового содержимого
+    echo $text;
+}
 
-}
-xml_set_element_handler($parcer,"onStart", "onEnd"); //функцию-обработчики начальных и конечных тего
-xml_set_character_data_handler($parcer,"onText"); //функцию-обработчик текстового содержимого
+$sax= xml_parser_create("utf-8");// парсер
+
+xml_set_element_handler($sax,"onStart", "onEnd"); //функцию-обработчики начальных и конечных тего
+xml_set_character_data_handler($sax,"onText"); //функцию-обработчик текстового содержимого
 
 ?>
 <html>
@@ -27,10 +37,8 @@ xml_set_character_data_handler($parcer,"onText"); //функцию-обрабо�
 			<th>Цена, руб</th>
 		</tr>
 	<?php
-    $file="xslt/catalog.xml";
-    $strFile=file_get_contents("$file",FILE_USE_INCLUDE_PATH);
 
-	xml_parce($parcer,"$strFile")	// Запустите парсер
+	 xml_parse($sax, file_get_contents("catalog.xml"));	// Запустите парсер
 
 	?>
 	</table>
