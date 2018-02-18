@@ -6,8 +6,8 @@ $errMsg = "";
 if($_SERVER["REQUEST_METHOD"]=="POST"){
     include "savepost.inc.php";
 }
-
-if(isset($_GET["d"])){
+//web100ry - test git  NEW branch from other comp
+gittif(isset($_GET["d"])){
     include "deletepost.inc.php";
 }
 
