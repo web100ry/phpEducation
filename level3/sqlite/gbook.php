@@ -2,7 +2,7 @@
 include "GbookDB.class.php";
 $gbook = new GbookDB();
 $errMsg = "";
-
+//web100ry - test git from other comp
 if($_SERVER["REQUEST_METHOD"]=="POST"){
     include "savepost.inc.php";
 }
