@@ -1,35 +1,38 @@
 <?php
-/* 
-ЗАДАНИЕ 1
-- Создайте константу для хранения имени XML-файла
-- Проверьте, была ли отправлена HTML-форма?
-	Если она была отправлена: отфильтруйте полученные данные
-- Получите данные об IP-адресе пользователя	
-- Получите данные о текущих дате и времени
-*/
+define("USER_LOG","users.xml");
+if ($_SERVER["REQUEST_METHOD"]=="POST") {
+    $name = stripslashes(trim(strip_tags($_POST["name"])));
+    $email = stripslashes(trim(strip_tags($_POST["email"])));
+    $msg = stripslashes(trim(strip_tags($_POST["msg"])));
+    $ip = $_SERVER["REMOTE_ADDR"];
+    $dt = time();
 
-/*
-ЗАДАНИЕ 2
-- Создайте объект DOMDocument
-- Проверьте, существует ли xml-документ с данными
-	Если существует, загрузите его в созданный объект
-	и получите корневой элемент
-	Если не существует, создайте корневой элемент "users"
-	и привяжите его к объекту
-*/
+    $dom = new DOMDocument("1.0", "utf-8");
+    if (!file_exists(USER_LOG)) {
+        $root= $dom->createElement("users");
+        $dom->appendChild($root);
+    } else {
+        $dom->load(USER_LOG);
+        $root = $dom->documentElement;
+    }
+    $n=$dom->createElement("name",$name);
+    $e=$dom->createElement("email",$email);
+    $m=$dom->createElement("msg",$msg);
+    $i=$dom->createElement("ip",$ip);
+    $d=$dom->createElement("dt",$dt);
+    $user=$dom->createElement("user");
 
-/*
-ЗАДАНИЕ 3
-- Cоздайте новый XML-элемент "user" для очередной записи
-- Cоздайте XML-элементы для всех данных Гостевой книги:
-	name, email, msg, IP, datetime
-- Cоздайте текстовые узлы для всех указанных элементов
-- Привяжите текстовые узлы к соответствующим XML-элементам
-- Привяжите XML-элементы с данными заказа к XML-элементу "user"
-- Привяжите XML-элемент "user" к корневому элементу "users"
-- Сохраните файл
-- Перезапросите страницу для избавления от посланных данных
-*/	
+    $user->appendChild($n);
+    $user->appendChild($e);
+    $user->appendChild($m);
+    $user->appendChild($i);
+    $user->appendChild($d);
+    $root->appendChild($user);
+    $dom->save(USER_LOG);
+    header("Location: gbook.php"); exit;
+}
+
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">

@@ -43,9 +43,15 @@ foreach ($root->childNodes as $book) {
     }
 }
 
+
 ?>
 	</table>
-</body>
+    <?php
+    $title=$dom->getElementsByTagName("title");
+    echo $title->item(2)->textContent;
+    ?>
+
+    </body>
 </html>
 
 
