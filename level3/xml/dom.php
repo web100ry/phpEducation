@@ -1,11 +1,10 @@
 <?php
-	/*
-	ЗАДАНИЕ 1
-	- Создайте объект DOM
-	- Загрузите XML-документ в объект
-	- Получите корневой элемент
-	*/
-?>	
+$dom= new DOMDocument("1.0","utf-8");
+$dom->load("catalog.xml");
+$root=$dom->documentElement;
+
+
+?>
 <html>
 	<head>
 		<title>Каталог</title>
@@ -20,10 +19,30 @@
 			<th>Цена, руб</th>
 		</tr>
 <?php
-	/*
-	ЗАДАНИЕ 2
-	- Заполните таблицу необходимыми данными
-	*/
+/*
+echo $root->nodeType;
+echo "<br>";
+$children = $root->childNodes;
+foreach ($children as $book){
+    echo $book->textContent."<br>";
+
+}
+*/
+foreach ($root->childNodes as $book) {
+    if ($book->nodeType == 1) {
+        echo "<tr>";
+        foreach ($book->childNodes as $item) {
+            if ($item->nodeType == 1) {
+                echo "<td>";
+                echo $item->textContent;
+                echo "</td>";
+            }
+        }
+        echo "</tr>";
+
+    }
+}
+
 ?>
 	</table>
 </body>
