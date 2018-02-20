@@ -24,17 +24,16 @@ $sxml=simplexml_load_file("catalog.xml");
 			<th>Цена, руб</th>
 		</tr>
 <?php
-$i=0;
-	foreach ($sxml as $item){
+
+	foreach ($sxml->book as $item){
         ?>
 	    <tr>
-			<td><?=$sxml->book[$i]->author?></td>
-			<td><?=$sxml->book[$i]->title?></td>
-			<td><?=$sxml->book[$i]->pubyear?></td>
-			<td><?=$sxml->book[$i]->price?></td>
+			<td><?=$item->author?></td>
+			<td><?=$item->title?></td>
+			<td><?=$item->pubyear?></td>
+			<td><?=$item->price?></td>
 		</tr>
     <?php
-        ++$i;
 	}
 	    /*
 	ЗАДАНИЕ 2
