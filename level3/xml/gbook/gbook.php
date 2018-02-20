@@ -8,11 +8,21 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
     $dt = time();
 
     $dom = new DOMDocument("1.0", "utf-8");
+    $dom->formatOutput = true;
+    $dom->preserveWhiteSpace=false;
+
+
     if (!file_exists(USER_LOG)) {
         $root= $dom->createElement("users");
         $dom->appendChild($root);
     } else {
         $dom->load(USER_LOG);
+       /*
+        $dom->loadXML($str);
+        $dom->loadHTML($str);
+        $dom->loadHTMLFile($file);
+        */
+
         $root = $dom->documentElement;
     }
     $n=$dom->createElement("name",$name);
