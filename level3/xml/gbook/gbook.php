@@ -70,13 +70,22 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 </form>
 
 <?php
-/*
-ЗАДАНИЕ 4
-- Создайте объект SimpleXML и загрузите в него XML-документ
-- Выведите в браузер все сообщения, а также информацию
-  об авторе каждого сообщения в произвольной форме
-  в обратном порядке
-*/
+$sxml=simplexml_load_file("users.xml");
+    $users=(array)$sxml;
+   // var_dump($users);
+
+    //$users=array_reverse($users);
+    $users=array_reverse($users["user"]);
+
+foreach ($users as $item) {
+    ?>
+   <a href="mailto:<?=$item->email?>"><?=$item->name?></a><br>
+   IP: <?=$item->ip?><br>
+   DATA PUB: <?=date("d-m-Y H:i:s",$item->dt*1)?><br>
+   <?=nl2br($item->msg)?>
+   <br><hr>
+    <?php
+}
 ?>
 
 </body>
