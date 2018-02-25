@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<users>
+  <user>
+    <name>Valerii</name>
+    <email>valerij.ivanjuk@gmail.com</email>
+    <msg>Test1&#13;
+Test1&#13;
+Test test 1</msg>
+    <ip>127.0.0.1</ip>
+    <dt>1519159823</dt>
+  </user>
+  <user>
+    <name>Valerii2</name>
+    <email>valerij.2ivanjuk@gmail.com</email>
+    <msg>2 test&#13;
+2 test</msg>
+    <ip>127.0.0.1</ip>
+    <dt>1519159849</dt>
+  </user>
+</users>
