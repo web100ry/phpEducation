@@ -1,8 +1,8 @@
 <?php
-	// Ñîçäàíèå SOAP-êëèåíòà
-	$client = new SoapClient("http://localhost/primer/soap/CurrencyExchangeService.wsdl");
+	// Ð¡Ð¾Ð·Ð´Ð°Ð½Ð¸Ðµ SOAP-ÐºÐ»Ð¸ÐµÐ½Ñ‚Ð°
+	$client = new SoapClient("http://localhost/php/level3/demo/soap/CurrencyExchangeService.wsdl");
 	
-	// Ïîñûëêà SOAP-çàïðîñà c ïîëó÷åíèåì ðåçóëüòàò
+	// ÐŸÐ¾ÑÑ‹Ð»ÐºÐ° SOAP-Ð·Ð°Ð¿Ñ€Ð¾ÑÐ° c Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸ÐµÐ¼ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚
 	$result = $client->getRate("us", "russia");
-	echo "Òåêóùèé êóðñ: ", $result;
+	echo "Ð¢ÐµÐºÑƒÑ‰Ð¸Ð¹ ÐºÑƒÑ€Ñ: ", $result;
 ?>

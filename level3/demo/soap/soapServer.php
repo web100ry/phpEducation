@@ -1,8 +1,8 @@
 <?php
 function getRate($country1, $country2){
-	//Ïðîïèñûâàåì êóðñ ðóáëÿ ê ãðèâíå
+	//ÐŸÑ€Ð¾Ð¿Ð¸ÑÑ‹Ð²Ð°ÐµÐ¼ ÐºÑƒÑ€Ñ Ñ€ÑƒÐ±Ð»Ñ Ðº Ð³Ñ€Ð¸Ð²Ð½Ðµ
 	$rur2grn = 0.17;
-	//Ïðîïèñûâàåì êóðñ ãðèâíû ê ðóáëþ
+	//ÐŸÑ€Ð¾Ð¿Ð¸ÑÑ‹Ð²Ð°ÐµÐ¼ ÐºÑƒÑ€Ñ Ð³Ñ€Ð¸Ð²Ð½Ñ‹ Ðº Ñ€ÑƒÐ±Ð»ÑŽ
 	$grn2rur = 5.6;
 	if($country1 == "russia"){//&& country2
 		return $rur2grn;
@@ -12,11 +12,11 @@ function getRate($country1, $country2){
 		return 0.0;//throw new SoapFault("Server", "Unknown rate: $country1 and $country2.")
 	}
 }
-//Îòêëþ÷àåì êýøèðîâàíèå
+//ÐžÑ‚ÐºÐ»ÑŽÑ‡Ð°ÐµÐ¼ ÐºÑÑˆÐ¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ
 ini_set("soap.wsdl_cache_enabled", "0");
-$server = new SoapServer("http://localhost/primer/soap/CurrencyExchangeService.wsdl");
+$server = new SoapServer("http://localhost/php/level3/demo/soap/CurrencyExchangeService.wsdl");
 $server->addFunction("getRate");
-// Çàïóñê ñåðâåðà
+// Ð—Ð°Ð¿ÑƒÑÐº ÑÐµÑ€Ð²ÐµÑ€Ð°
 $server->handle();
 
 ?>
