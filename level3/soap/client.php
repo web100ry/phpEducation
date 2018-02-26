@@ -4,6 +4,11 @@
 $client = new SoapClient("http://localhost/php/level3/soap/stock.wsdl");
 // Послать SOAP-запрос c получением результат
 var_dump($client->__getFunctions());//перегляд що потрібно надати і що можна отримати
-$result = $client->getStock("3");
-echo $result;
+//$result = $client::
+try{
+    $result = $client->getStock("3");
+    echo $result;
+}catch(SoapFault $e){
+    echo $e->getMessage();
+}
 ?>
