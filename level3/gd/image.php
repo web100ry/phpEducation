@@ -1,4 +1,5 @@
 <?php
+$img=imagecreatetruecolor(210,39);
 $img=imagecreatefromjpeg("images/sunset.jpg");
 
 //$img=imageCreate(500,300); //256 colors
@@ -38,7 +39,7 @@ imageFilledArc($img,90,90,180,180,290,350,$blue,IMG_ARC_CHORD); // трикут�
 
 imagestring($img,5 ,30,160,"Hello!", $red); // OLD SCHOOL :)
 
-imagettftext($img,10,10,20,20, $black,"fonts/georgia.ttf","ПРИВІТ!!");
+imagettftext($img,10,10,20,20, 255,"fonts/georgia.ttf","ПРИВІТ!!");
 
 
 //header("Content-Type: image/gif");
