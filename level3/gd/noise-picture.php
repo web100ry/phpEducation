@@ -26,6 +26,7 @@ $_SESSION['randStr']=$randStr;
  */
 $img=imagecreatetruecolor(210,39,90);
 $img=imagecreatefromjpeg("images/noise.jpg");
+//imageAntiAlias($img,true);
 $silver = imagecolorallocate($img,90,90,90);
 $red = imagecolorallocate($img,255,0,0);
 $green = imagecolorallocate($img,0,155,0);
@@ -33,7 +34,7 @@ $blue = imagecolorallocate($img,0,0,255);
 $orange = imagecolorallocate($img,255,100,0);
 $black = imagecolorallocate($img,0,0,0);
 
-for ($i=1; $i<=$nChars; $i++){
+for ($i=0; $i<$nChars; $i++){
 
     /*
  * random color
@@ -48,13 +49,12 @@ for ($i=1; $i<=$nChars; $i++){
         case 6: $color=$black; break;
     }
     $angle=rand(-35,35);
-    $iii=$i-1;
-    imagettftext($img,28,$angle,30*$i,30, $color,"fonts/georgia.ttf","$randStr[$iii]");
+    imagettftext($img,28,$angle,30*($i+1),30, $color,"fonts/georgia.ttf","$randStr[$i]");
 
 }
 
 header("Content-Type: image/jpg");
-//imageAntiAlias($img,true);
+
 imageJPEG($img);
 
 	
