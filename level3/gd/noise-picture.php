@@ -1,13 +1,31 @@
 <?php
-	/*
-	ЗАДАНИЕ 1
-	- Запустите сессию
-	- Создайте переменную nChars(количество выводимых на картинке символов)
+//- Запустите сессию
+session_start();
+/*
+ Создайте переменную nChars(количество выводимых на картинке символов)
 		и присвойте ей произвольное значение(рекомендуемое: 5)
-	- Сгенерируйте случайную строку длиной nChars символов
-	- Создайте сессионную переменную randStr и присвойте ей сгенерированную строку
-	*/
-	
+*/
+$nChars=5;
+
+//- Сгенерируйте случайную строку длиной nChars символов
+
+for ($i=1; $i<=$nChars; $i++){
+    $randChar=rand(48,122);
+        if ((90<$randChar and $randChar<97) or (57<$randChar and $randChar<65)){
+         $i--;   continue;
+    }
+    $randStr.= chr($randChar);
+}
+//	- Создайте сессионную переменную randStr и присвойте ей сгенерированную строку
+$_SESSION['randStr']=$randStr;
+
+$img=imagecreatefromjpeg("images/noise.jpg");
+
+imagettftext($img,20,10,50,38, $black,"fonts/georgia.ttf","$randStr");
+
+header("Content-Type: image/jpg");
+imageJPEG($img);
+
 	/*
 	ЗАДАНИЕ 2
 	- Создайте изображение на основе файла "images/noise.jpg"

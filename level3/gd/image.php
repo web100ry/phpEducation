@@ -43,7 +43,7 @@ imagettftext($img,10,10,20,20, $black,"fonts/georgia.ttf","ПРИВІТ!!");
 
 //header("Content-Type: image/gif");
 header("Content-Type: image/png");
-//header("Content-Type: image/jpg");
+//header("Content-Type: image/jpeg");
 //imageGIF($img);
 imagePNG($img);
 //imageJPEG($img,"test.jpg",80);
