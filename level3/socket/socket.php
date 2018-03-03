@@ -18,4 +18,12 @@ fputs($s, $out);
     }
 	// Закрытие соединения
 	fclose($s);
+
+
+	echo $hostname=gethostbyaddr("78.152.168.129")."<br>";
+	echo $ip=gethostbyname("podillyanews.com")."<br>";
+	echo var_dump($hosts=gethostbynamel("ugcc.km.ua"))."<br>";
+
+
+
 ?>
