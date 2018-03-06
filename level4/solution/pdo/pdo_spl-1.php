@@ -11,12 +11,12 @@ try {
 
 	$it = new IteratorIterator($stmt);
 
-	// $it îáúåêò ñîäåğæèò íåñêîëüêî ìàññèâîâ.
-	// Êàæäûé ìàññèâ ñîäåğæèò ğåçóëüòàò çàïğîñà.
+	// $it Ğ¾Ğ±ÑŠĞµĞºÑ‚ ÑĞ¾Ğ´ĞµÑ€Ğ¶Ğ¸Ñ‚ Ğ½ĞµÑĞºĞ¾Ğ»ÑŒĞºĞ¾ Ğ¼Ğ°ÑÑĞ¸Ğ²Ğ¾Ğ².
+	// ĞšĞ°Ğ¶Ğ´Ñ‹Ğ¹ Ğ¼Ğ°ÑÑĞ¸Ğ² ÑĞ¾Ğ´ĞµÑ€Ğ¶Ğ¸Ñ‚ Ñ€ĞµĞ·ÑƒĞ»ÑŒÑ‚Ğ°Ñ‚ Ğ·Ğ°Ğ¿Ñ€Ğ¾ÑĞ°.
 	foreach($it as $row){
-		// Ñîçäà¸ì array îáúåêò
+		// Ğ¡Ğ¾Ğ·Ğ´Ğ°Ñ‘Ğ¼ array Ğ¾Ğ±ÑŠĞµĞºÑ‚
 		$arrayObj = new ArrayObject($row);
-		// Õîäèì ïî ìàññèâó
+		// Ğ¥Ğ¾Ğ´Ğ¸Ğ¼ Ğ¿Ğ¾ Ğ¼Ğ°ÑÑĞ¸Ğ²Ñƒ
 		for($iterator = $arrayObj->getIterator();$iterator->valid();$iterator->next()){
 			// output the key and current array value
 			echo $iterator->current() . '<br />';
