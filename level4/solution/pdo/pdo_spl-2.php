@@ -8,14 +8,14 @@ try {
 
 	$stmt->execute();
 
-	// Ïîëó÷àåì òîëüêî àññîöèàòèâíûé ìàññèâ
+	// ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð°ÑÑÐ¾Ñ†Ð¸Ð°Ñ‚Ð¸Ð²Ð½Ñ‹Ð¹ Ð¼Ð°ÑÑÐ¸Ð²
 	$stmt->setFetchMode(PDO::FETCH_ASSOC);
 
 	$it = new IteratorIterator($stmt);
 
 	foreach($it as $row){
 		echo '<table style="border: solid 1px black; width: 300px;">';
-		// Èòåðèðóåì ñ ïîìîùüþ ArrayIterator
+		// Ð˜Ñ‚ÐµÑ€Ð¸Ñ€ÑƒÐµÐ¼ Ñ Ð¿Ð¾Ð¼Ð¾Ñ‰ÑŒÑŽ ArrayIterator
 		foreach(new ArrayIterator($row) as $key => $val){
 			echo '<tr><td style="width: 150px">'.$key.'</td><td>'.$val.'</td></tr>';
 		}
