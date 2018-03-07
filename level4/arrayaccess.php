@@ -37,5 +37,4 @@ $book['author'] = 'Jhon Smith';
 $book['isbn'] = 23458798;
 $book['pages'] = 123;
 print_r($book);
-
 ?>
