@@ -4,22 +4,23 @@ class MyDB extends SQLite3
 {
     function __construct()
     {
-        $this->open('new.db');
+        $this->open('users.db');
     }
 }
-
-class Db extends SQLite3{
+class Db {
 	private $_db;
 	function __construct(){
-		$this->_db = new SQLite3("users.db");
+		$this->_db = new MyDB();
 	}
     
 	public function userExists($name){
 		return (boolean) $this->_db->query("SELECT count(*) FROM users WHERE name = '$name'");
 	}
 	public function getUserId($name){
-		$result = $this->_db->arrayQuery("SELECT inn FROM users WHERE name = '$name'", SQLITE_NUM);
-		return $result[0][0];
+
+		$result = $this->_db->query("SELECT inn FROM users WHERE name = '$name'");
+        $row= $result->fetchArray();
+            return $row["inn"];
 	}
 	public function setUserId($name, $inn){
 		$this->_db->query("INSERT INTO users VALUES('$name', $inn))");
@@ -51,6 +52,6 @@ class UserToInn implements ArrayAccess {
 	}
 }
 $userMap = new UserToInn();
-if(isset($userMap["John"]))
-	print "Номер ИНН пользователя Джон - " . $userMap["John"];
+if(isset($userMap["Ivan"]))
+	print "Номер ИНН пользователя IVAN - " . $userMap["Ivan"];
 ?>
