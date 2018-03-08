@@ -1,8 +1,17 @@
 <?php
-class Db{
+
+class MyDB extends SQLite3
+{
+    function __construct()
+    {
+        $this->open('new.db');
+    }
+}
+
+class Db extends SQLite3{
 	private $_db;
 	function __construct(){
-		$this->_db = new SQLiteDatabase("users.db");
+		$this->_db = new SQLite3("users.db");
 	}
     
 	public function userExists($name){
