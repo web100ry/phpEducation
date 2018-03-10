@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<definitions name="CurrencyExchangeService" targetNamespace="http://localhost/soap/CurrencyExchangeService.wsdl" xmlns:tns="http://localhost/soap/CurrencyExchangeService.wsdl" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<definitions name="CurrencyExchangeService" targetNamespace="http://localhost/php/level3/demo/soap/CurrencyExchangeService.wsdl" xmlns:tns="http://localhost/php/level3/demo/soap/CurrencyExchangeService.wsdl" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
 	<message name="getRateRequest">
 		<part name="country1" type="xsd:string"/>
 		<part name="country2" type="xsd:string"/>
@@ -28,7 +28,7 @@
 	<service name="CurrencyExchangeService">
 		<documentation>Returns the exchange rate between the two currencies</documentation>
 		<port name="CurrencyExchangePort" binding="tns:CurrencyExchangeBinding">
-			<soap:address location="http://localhost/soap/soapServer.php"/>
+			<soap:address location="http://localhost/php/level3/demo/soap/soapServer.php"/>
 		</port>
 	</service>
 </definitions>

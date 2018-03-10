@@ -17,9 +17,9 @@ class CSVFileObject extends SPLFileInfo implements Iterator, SeekableIterator {
 			$this->fp = fopen($filename, $mode, $use_include_path);
 		}
 		if(!$this->fp) {
-			throw new Exception("Íå ìîãó ïðî÷èòàòü ôàéë");
+			throw new Exception("ÐÐµ Ð¼Ð¾Ð³Ñƒ Ð¿Ñ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ñ„Ð°Ð¹Ð»");
 		}
-		//Ïîëó÷àåì cvs-ôàéë 
+		//ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ cvs-Ñ„Ð°Ð¹Ð» 
 		$this->map = $this->fgetcsv();
 		$this->currentLine = 0;
 	}
@@ -31,10 +31,10 @@ class CSVFileObject extends SPLFileInfo implements Iterator, SeekableIterator {
 	}
 	function current() {
 		/*
-		* Ìåòîä fgetcsv óâåëè÷èâàåò ôàéëîâûé óêàçàòåëü, 
+		* ÐœÐµÑ‚Ð¾Ð´ fgetcsv ÑƒÐ²ÐµÐ»Ð¸Ñ‡Ð¸Ð²Ð°ÐµÑ‚ Ñ„Ð°Ð¹Ð»Ð¾Ð²Ñ‹Ð¹ ÑƒÐºÐ°Ð·Ð°Ñ‚ÐµÐ»ÑŒ, 
 		* so you must first record the file pointer,
 		* get the data, and return the file pointer.
-		* Òîëüêî ìåòîä next() äîëæåí óâåëè÷èâàòü óêàçàòåëü.
+		* Ð¢Ð¾Ð»ÑŒÐºÐ¾ Ð¼ÐµÑ‚Ð¾Ð´ next() Ð´Ð¾Ð»Ð¶ÐµÐ½ ÑƒÐ²ÐµÐ»Ð¸Ñ‡Ð¸Ð²Ð°Ñ‚ÑŒ ÑƒÐºÐ°Ð·Ð°Ñ‚ÐµÐ»ÑŒ.
 		*/
 		$fpLoc = ftell($this->fp);
 		$data = $this->fgetcsv();

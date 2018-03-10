@@ -42,6 +42,6 @@ class NumberSquaredIterator implements Iterator {
 $obj = new NumberSquared(3, 7);
 //echo "start = ".$obj->_start;exit;
 foreach ($obj as $key => $value) {
-	print " Êâàäðàò ÷èñëà $êåó - $value\n";
+	print " ÐšÐ²Ð°Ð´Ñ€Ð°Ñ‚ Ñ‡Ð¸ÑÐ»Ð° $ÐºÐµÑƒ - $value\n";
 }
 ?>

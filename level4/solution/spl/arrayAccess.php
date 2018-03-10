@@ -1,16 +1,26 @@
 <?php
-class Db{
+
+class MyDB extends SQLite3
+{
+    function __construct()
+    {
+        $this->open('users.db');
+    }
+}
+class Db {
 	private $_db;
 	function __construct(){
-		$this->_db = new SQLiteDatabase("users.db");
+		$this->_db = new MyDB();
 	}
     
 	public function userExists($name){
 		return (boolean) $this->_db->query("SELECT count(*) FROM users WHERE name = '$name'");
 	}
 	public function getUserId($name){
-		$result = $this->_db->arrayQuery("SELECT inn FROM users WHERE name = '$name'", SQLITE_NUM);
-		return $result[0][0];
+
+		$result = $this->_db->query("SELECT inn FROM users WHERE name = '$name'");
+        $row= $result->fetchArray();
+            return $row["inn"];
 	}
 	public function setUserId($name, $inn){
 		$this->_db->query("INSERT INTO users VALUES('$name', $inn))");
@@ -20,8 +30,8 @@ class Db{
 	}
 }
 class UserToInn implements ArrayAccess {
-	private $_db; // Îáúåêò, ñðåäñòâàìè êîòîðîãî îñóùåñòâëÿåòñÿ
-	// äîñòóï ê áàçå äàííûõ
+	private $_db; // ÐžÐ±ÑŠÐµÐºÑ‚, ÑÑ€ÐµÐ´ÑÑ‚Ð²Ð°Ð¼Ð¸ ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð³Ð¾ Ð¾ÑÑƒÑ‰ÐµÑÑ‚Ð²Ð»ÑÐµÑ‚ÑÑ
+	// Ð´Ð¾ÑÑ‚ÑƒÐ¿ Ðº Ð±Ð°Ð·Ðµ Ð´Ð°Ð½Ð½Ñ‹Ñ…
 	function __construct(){
 		$this->_db = new Db();
     }
@@ -42,6 +52,6 @@ class UserToInn implements ArrayAccess {
 	}
 }
 $userMap = new UserToInn();
-if(isset($userMap["John"]))
-	print "Íîìåð ÈÍÍ ïîëüçîâàòåëÿ Äæîí - " . $userMap["John"];
+if(isset($userMap["Ivan"]))
+	print "ÐÐ¾Ð¼ÐµÑ€ Ð˜ÐÐ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ IVAN - " . $userMap["Ivan"];
 ?>

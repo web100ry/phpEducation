@@ -3,7 +3,7 @@
 <?php
 error_reporting(E_ALL);
 
-// наследуем RecursiveIteratorIterator
+// РЅР°СЃР»РµРґСѓРµРј RecursiveIteratorIterator
 class TableRows extends RecursiveIteratorIterator{
 	function __construct($it){
 		parent::__construct($it, self::LEAVES_ONLY);
@@ -16,7 +16,7 @@ class TableRows extends RecursiveIteratorIterator{
 	function endChildren() {
 		echo '</tr>'."\n";
 	}
-} // конец описания класса
+} // РєРѕРЅРµС† РѕРїРёСЃР°РЅРёСЏ РєР»Р°СЃСЃР°
 
 try {
 	$dsn = new PDO("sqlite2:users.db");

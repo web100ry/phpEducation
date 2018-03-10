@@ -4,28 +4,41 @@ class NumberSquared implements Iterator {
 	private $_cur;
 
 	public function __construct($start, $end){
-		$this->_start = $start;
+        echo "----construct------<br>";
+	    $this->_start = $start;
 		$this->_end = $end;
 	}
 	public function rewind(){
 		$this->_cur = $this->_start;
+	echo "----rewind------<br>";
 	}
 	public function key(){
-		return $this->_cur;
+        echo "----key------<br>";
+	    return $this->_cur;
 	}
 	public function current(){
+        echo "----current------<br>";
 		return pow($this->_cur, 2);
+
 	}
 	public function next(){
-		$this->_cur++;
+        echo "----next------<br>";
+	    $this->_cur++;
+
 	}
+
 	public function valid(){
-		return $this->_cur <= $this->_end;
+        echo "----valid------<br>";
+			return $this->_cur <= $this->_end;
 	}
 
 }
-$obj = new NumberSquared(3, 7);
+$obj = new NumberSquared(1, 9);
+echo "<br>";
+var_dump($obj);
+echo "<br>";
+
 foreach ($obj as $key => $value) {
-	print "Квадрат числа $key - $value\n";
+	print "РљРІР°РґСЂР°С‚ С‡РёСЃР»Р° $key - $value <br>\n ";
 }
 ?>

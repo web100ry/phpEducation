@@ -1,23 +1,61 @@
 <?php
-	/*
-	ЗАДАНИЕ 1
-	- Запустите сессию
-	- Создайте переменную nChars(количество выводимых на картинке символов)
+//- Запустите сессию
+session_start();
+/*
+ Создайте переменную nChars(количество выводимых на картинке символов)
 		и присвойте ей произвольное значение(рекомендуемое: 5)
-	- Сгенерируйте случайную строку длиной nChars символов
-	- Создайте сессионную переменную randStr и присвойте ей сгенерированную строку
-	*/
-	
-	/*
-	ЗАДАНИЕ 2
-	- Создайте изображение на основе файла "images/noise.jpg"
-	- Создайте цвет для рисования
-	- Включите сглаживание
-	- Задайте начальные координаты x и y для отрисовки строки(рекомендуемые: 20 и 30)
-	- Используя цикл for отрисуйте строку посимвольно
-	- Для каждого символа используйте случайные значение размера и угла наклона
-	- Отдайте полученный результат как jpeg-изображение с 10% сжатием
-	*/
-	
+*/
+$nChars=5;
+
+/*
+ *  випадкова строка nChars символів
+ */
+for ($i=1; $i<=$nChars; $i++){
+    $randChar=rand(48,122);
+        if ((90<$randChar and $randChar<97) or (57<$randChar and $randChar<65)){
+         $i--;   continue;
+    }
+    $randStr.= chr($randChar);
+}
+
+//	- Создайте сессионную переменную randStr и присвойте ей сгенерированную строку
+$_SESSION['randStr']=$randStr;
+
+/*
+ * basic config image
+ */
+$img=imagecreatetruecolor(210,39,90);
+$img=imagecreatefromjpeg("images/noise.jpg");
+//imageAntiAlias($img,true);
+$silver = imagecolorallocate($img,90,90,90);
+$red = imagecolorallocate($img,255,0,0);
+$green = imagecolorallocate($img,0,155,0);
+$blue = imagecolorallocate($img,0,0,255);
+$orange = imagecolorallocate($img,255,100,0);
+$black = imagecolorallocate($img,0,0,0);
+
+for ($i=0; $i<$nChars; $i++){
+
+    /*
+ * random color
+ */
+    $ii=rand(1,6);
+    switch ($ii){
+        case 1: $color=$silver; break;
+        case 2: $color=$red; break;
+        case 3: $color=$green; break;
+        case 4: $color=$blue; break;
+        case 5: $color=$orange; break;
+        case 6: $color=$black; break;
+    }
+    $angle=rand(-35,35);
+    imagettftext($img,28,$angle,30*($i+1),30, $color,"fonts/georgia.ttf","$randStr[$i]");
+
+}
+
+header("Content-Type: image/jpg");
+
+imageJPEG($img);
+
 	
 ?>
