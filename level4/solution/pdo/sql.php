@@ -20,6 +20,8 @@ $params=parse_ini_file("config.ini");
 try{
     $dbh = new PDO($params['db.conn']);
 
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+
     $sql="SELECT * FROM users";
     $stmt=$dbh->query($sql);
     $result=$stmt->fetchAll(PDO::FETCH_CLASS,'User');
