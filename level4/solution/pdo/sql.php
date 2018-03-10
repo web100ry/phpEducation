@@ -4,8 +4,8 @@ class User{
     public $email;
     public $name;
 
-    function nameToUpper () {
-        return strtoupper($this->$name);
+    function nameToUpper(){
+        return strtoupper($this->name);
     }
 }
 /**
@@ -16,11 +16,19 @@ class User{
  */
 $params=parse_ini_file("config.ini");
 
-foreach (PDO::getAvailableDrivers()as $driver){
-    echo $driver."<br>";
-}
+
 try{
     $dbh = new PDO($params['db.conn']);
+
+    $sql="SELECT * FROM users";
+    $stmt=$dbh->query($sql);
+    $result=$stmt->fetchAll(PDO::FETCH_CLASS,'User');
+
+    foreach ($result as $user){
+        echo $user->nameToUpper()."<br>";
+    }
+
+
 /*
     $name="O'Brine";
     $name= $dbh->quote($name); // екранування спецсимволів
