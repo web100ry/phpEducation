@@ -2,9 +2,9 @@
 error_reporting(E_ALL);
 
 try {
-	$dsn = new PDO("sqlite2:users.db");
+	$dsn = new PDO("sqlite:users.db");
 
-	$stmt = $dsn->prepare("SELECT * FROM user ORDER BY id");
+	$stmt = $dsn->prepare("SELECT * FROM users ORDER BY name");
 
 	$stmt->execute();
 

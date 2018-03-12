@@ -1,5 +1,5 @@
 <table style="border: solid 1px black; width: 400px;">
-<tr><td>ID</td><td>Name</td><td>Email</td></tr>
+<tr><td>Name</td><td>INN</td><td>E-mail</td></tr>
 <?php
 error_reporting(E_ALL);
 
@@ -19,9 +19,9 @@ class TableRows extends RecursiveIteratorIterator{
 } // конец описания класса
 
 try {
-	$dsn = new PDO("sqlite2:users.db");
+	$dsn = new PDO("sqlite:users.db");
 
-	$stmt = $dsn->prepare('SELECT * FROM user');
+	$stmt = $dsn->prepare('SELECT * FROM users');
 
 	$stmt->execute();
 
