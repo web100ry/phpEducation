@@ -43,6 +43,7 @@ class ClassDelegator{
 $obj = new ClassDelegator();
 $obj->addObject(new ClassOne());
 $obj->addObject(new ClassThree());
+//$obj->addObject(new ClassTwo());
 $obj->sayHelloOne();
 $obj->sayHelloTwo();
 $obj->sayHelloThree();
