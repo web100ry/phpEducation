@@ -24,4 +24,6 @@ $a = new MyClass();
 $b = new MyOtherClass();
 $a->myMethod($b);
 echo "<br> Usage Memory: ". xdebug_memory_usage();
+
+
 ?>
