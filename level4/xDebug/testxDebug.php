@@ -23,7 +23,7 @@ class MyOtherClass{
 $a = new MyClass();
 $b = new MyOtherClass();
 $a->myMethod($b);
-echo "<br> Usage Memory: ". xdebug_memory_usage();
+echo "<br> qwqw Usage Memory: ". xdebug_memory_usage();
 
 
 ?>
