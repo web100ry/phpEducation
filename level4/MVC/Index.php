@@ -7,9 +7,9 @@
  * Time: 9:02
  */
 set_include_path(get_include_path()
-.PATH_SEPARATOR. 'aplication/controllers'
-.PATH_SEPARATOR. 'aplication/models'
-.PATH_SEPARATOR. 'aplication/views');
+.PATH_SEPARATOR. 'applications/controllers'
+.PATH_SEPARATOR. 'applications/models'
+.PATH_SEPARATOR. 'applications/views');
 
 function __autoload($class){
     require_once $class.'.php';

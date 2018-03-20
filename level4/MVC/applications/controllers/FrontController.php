@@ -10,7 +10,7 @@ class FrontController{
     protected $_controller, $_action, $_param, $_body;
     static $_instance;
     public static function getInstance(){
-        if(!(self::getInstance instsceOf self))
+        if(!(self::$_instance instanceOf self))
             self::$_instance = new self();
         return self::$_instance;
     }
@@ -18,16 +18,17 @@ class FrontController{
     {
         $request = $_SERVER['REQUEST_URI'];
         //user/get/id/1
-        $splits = explode('/',trim($request),'/');
+        $request = substr($request,0,stripos($request,'?'));
+        $splits = explode('/',trim($request));
 // вибір контроллера
-$this->_controller = !empty($splits[0])?ucfirst($splits[0].'Controller':'IndexController');
+$this->_controller = !empty($splits[3])?ucfirst($splits[3]).'Controller':'IndexController';
 //вибір екшина
-$thus->_action = !empty($splits[1])?$splits[1].'Action':'IndexAction'
+$this->_action = !empty($splits[4])?($splits[4].'Action'):'indexAction';
 //перебір параметрів
-        if (!empty($splits[2])){
+        if (!empty($splits[5])){
     $keys = $values = array();
         for ($i=2, $cnt=count($splits);$i<$cnt;$i++){
-                if ($i%2==0) //якщо парне
+                if (!$i%2==0) //якщо парне
                     $keys[] = $splits[$i];
                 else
                     $values[] = $splits[$i];
@@ -35,12 +36,13 @@ $thus->_action = !empty($splits[1])?$splits[1].'Action':'IndexAction'
             $this->_param = array_combine($keys,$values);
         }
     }
-    public function route(){
+    public function route()
+    {
         if (class_exists($this->getController())){
             $rc = new ReflectionClass($this->getController());
             if($rc->implementsInterface('IController')){
-                if ($rc->hasMeshod($this->getAction())){
-                    $controller = $rc->newInterface();
+                if ($rc->hasMethod($this->getAction())){
+                    $controller = $rc->newInstance();
                     $method = $rc->getMethod($this->getAction());
                     $method->invoke($controller);
                 }else{
@@ -66,7 +68,7 @@ $thus->_action = !empty($splits[1])?$splits[1].'Action':'IndexAction'
         return $this->_body;
     }
     function setBody($body){
-        return $this->_body=$body;
+        $this->_body=$body;
     }
 
 }
