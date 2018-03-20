@@ -18,4 +18,3 @@ function __autoload($class){
 $front = FrontController::getInstance(); //initialization
 $front->route();
 echo $front->getBody();
-?>
