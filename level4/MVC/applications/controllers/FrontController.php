@@ -18,7 +18,7 @@ class FrontController{
     {
         $request = $_SERVER['REQUEST_URI'];
         //user/get/id/1
-        $request = substr($request,0,stripos($request,'?'));
+   //     $request = substr($request,0,stripos($request,'?'))."Index/index/name/Mike"; // for xDebug
         $splits = explode('/',trim($request));
 // вибір контроллера
 $this->_controller = !empty($splits[3])?ucfirst($splits[3]).'Controller':'IndexController';
@@ -27,11 +27,11 @@ $this->_action = !empty($splits[4])?($splits[4].'Action'):'indexAction';
 //перебір параметрів
         if (!empty($splits[5])){
     $keys = $values = array();
-        for ($i=2, $cnt=count($splits);$i<$cnt;$i++){
-                if (!$i%2==0) //якщо парне
-                    $keys[] = $splits[$i];
-                else
+        for ($i=5, $cnt=count($splits);$i<$cnt;$i++){
+                if ($i%2==0) //якщо парне
                     $values[] = $splits[$i];
+                else
+                    $keys[] = $splits[$i];
             }
             $this->_param = array_combine($keys,$values);
         }

@@ -1,4 +1,6 @@
-<h1>Hello </h1>
+<h1>
+    Hello,
 <?php
 echo $this->name;
 ?>
+</h1>

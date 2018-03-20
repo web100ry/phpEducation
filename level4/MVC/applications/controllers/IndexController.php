@@ -10,9 +10,10 @@ class IndexController implements IController
 {
     function indexAction(){
         $fc = FrontController::getInstance();
-
+        $params = $fc->getParams();
         $view = new View();
-        $view->name = 'Jhon';
+       // $view->name = 'Jhon';
+        $view->name = $params['name'];
         $result = $view->render('../views/index.php');
         $fc->setBody($result);
     }
